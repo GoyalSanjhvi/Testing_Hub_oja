@@ -1,11 +1,11 @@
-// =============================================
+// ======================================
 // OJA Regression Framework
-// script.js
-// =============================================
+// ======================================
 
-// -------------------------------------
+
+// --------------------------------------
 // Execution Mode
-// -------------------------------------
+// --------------------------------------
 
 function getMode() {
 
@@ -16,9 +16,9 @@ function getMode() {
 }
 
 
-// -------------------------------------
+// --------------------------------------
 // Report Button
-// -------------------------------------
+// --------------------------------------
 
 const reportButton = document.getElementById("report");
 
@@ -28,26 +28,19 @@ document
 
     radio.addEventListener("change", () => {
 
-        if (getMode() === "regression") {
-
-            reportButton.style.display = "inline-block";
-
-        }
-
-        else {
-
-            reportButton.style.display = "none";
-
-        }
+        reportButton.style.display =
+            getMode() === "regression"
+                ? "inline-block"
+                : "none";
 
     });
 
 });
 
 
-// -------------------------------------
+// --------------------------------------
 // Summary
-// -------------------------------------
+// --------------------------------------
 
 function updateSummary() {
 
@@ -57,8 +50,7 @@ function updateSummary() {
 
     let totalTime = 0;
 
-    document
-    .querySelectorAll(".module-row")
+    document.querySelectorAll(".module-row")
     .forEach(row => {
 
         const status = row
@@ -69,19 +61,19 @@ function updateSummary() {
             .querySelector(".duration")
             .innerText;
 
-        if (status === "PASS") {
+        if(status === "PASS"){
 
             pass++;
 
         }
 
-        else if (status === "FAIL") {
+        if(status === "FAIL"){
 
             fail++;
 
         }
 
-        if (duration !== "--") {
+        if(duration !== "--"){
 
             totalTime += parseFloat(duration);
 
@@ -99,195 +91,144 @@ function updateSummary() {
 }
 
 
-// -------------------------------------
-// Run One Module
-// -------------------------------------
+// --------------------------------------
+// Execute One Module
+// --------------------------------------
 
-document
-.querySelectorAll(".run-btn")
-.forEach(button => {
+async function executeModule(row){
 
-    button.addEventListener("click", () => {
+    const button = row.querySelector(".run-btn");
 
-        const row = button.closest("tr");
+    const status = row.querySelector(".status");
 
-        const status = row.querySelector(".status");
+    const duration = row.querySelector(".duration");
 
-        const duration = row.querySelector(".duration");
+    button.disabled = true;
 
-        status.innerText = "RUNNING";
+    status.innerText = "RUNNING";
 
-        status.className = "status running";
+    status.className = "status running";
 
-        duration.innerText = "--";
+    duration.innerText = "--";
 
-        button.disabled = true;
+    try{
 
-        button.innerText = "Running...";
+        const response = await fetch("/run",{
 
-        fetch("/run", {
+            method:"POST",
 
-            method: "POST",
+            headers:{
 
-            headers: {
-
-                "Content-Type": "application/json"
+                "Content-Type":"application/json"
 
             },
 
-            body: JSON.stringify({
+            body:JSON.stringify({
 
-                module: button.dataset.module,
+                module:button.dataset.module,
 
-                mode: getMode()
+                mode:getMode()
 
             })
 
-        })
+        });
 
-        .then(response => response.json())
+        const result = await response.json();
 
-        .then(result => {
+        duration.innerText = result.duration + " s";
 
-            duration.innerText = result.duration + " s";
+        if(result.status === "PASS"){
 
-            if (result.status === "PASS") {
+            status.innerText = "PASS";
 
-                status.innerText = "PASS";
+            status.className = "status pass";
 
-                status.className = "status pass";
+        }
 
-            }
-
-            else {
-
-                status.innerText = "FAIL";
-
-                status.className = "status fail";
-
-            }
-
-            updateSummary();
-
-        })
-
-        .catch(error => {
-
-            console.error(error);
+        else{
 
             status.innerText = "FAIL";
 
             status.className = "status fail";
 
-        })
+        }
 
-        .finally(() => {
+    }
 
-            button.disabled = false;
+    catch(error){
 
-            button.innerText = "▶ Run";
+        console.error(error);
 
-        });
+        status.innerText = "FAIL";
+
+        status.className = "status fail";
+
+    }
+
+    finally{
+
+        button.disabled = false;
+
+        button.innerText = "▶ Run";
+
+        updateSummary();
+
+    }
+
+}
+
+
+// --------------------------------------
+// Individual Run
+// --------------------------------------
+
+document
+.querySelectorAll(".run-btn")
+.forEach(button=>{
+
+    button.addEventListener("click",async()=>{
+
+        const row = button.closest("tr");
+
+        await executeModule(row);
 
     });
 
 });
 
 
-// -------------------------------------
-// Run All Modules
-// -------------------------------------
+// --------------------------------------
+// Run All
+// --------------------------------------
 
 document
 .getElementById("run-all")
-.addEventListener("click", () => {
+.addEventListener("click",async()=>{
 
-    const button = document.getElementById("run-all");
+    const runAll = document.getElementById("run-all");
 
-    button.disabled = true;
+    runAll.disabled = true;
 
-    button.innerText = "Running...";
+    runAll.innerText = "Running...";
 
     const rows = document.querySelectorAll(".module-row");
 
-    rows.forEach(row => {
+    document
+    .querySelectorAll(".run-btn")
+    .forEach(btn=>btn.disabled=true);
 
-        row.querySelector(".status").innerText = "RUNNING";
+    for(const row of rows){
 
-        row.querySelector(".status").className = "status running";
+        await executeModule(row);
 
-        row.querySelector(".duration").innerText = "--";
+    }
 
-    });
+    document
+    .querySelectorAll(".run-btn")
+    .forEach(btn=>btn.disabled=false);
 
-    fetch("/run_all", {
+    runAll.disabled = false;
 
-        method: "POST",
-
-        headers: {
-
-            "Content-Type": "application/json"
-
-        },
-
-        body: JSON.stringify({
-
-            mode: getMode()
-
-        })
-
-    })
-
-    .then(response => response.json())
-
-    .then(results => {
-
-        rows.forEach((row, index) => {
-
-            const result = results[index];
-
-            if (!result) return;
-
-            const status = row.querySelector(".status");
-
-            const duration = row.querySelector(".duration");
-
-            duration.innerText = result.duration + " s";
-
-            if (result.status === "PASS") {
-
-                status.innerText = "PASS";
-
-                status.className = "status pass";
-
-            }
-
-            else {
-
-                status.innerText = "FAIL";
-
-                status.className = "status fail";
-
-            }
-
-        });
-
-        updateSummary();
-
-    })
-
-    .catch(error => {
-
-        console.error(error);
-
-    })
-
-    .finally(() => {
-
-        button.disabled = false;
-
-        button.innerText = "🚀 Run All Tests";
-
-    });
+    runAll.innerText = "🚀 Run All Tests";
 
 });

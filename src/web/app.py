@@ -4,14 +4,25 @@ app.py
 Flask Web Dashboard
 """
 
-from flask import Flask, jsonify, render_template, request
+from flask import Flask
+from flask import jsonify
+from flask import render_template
+from flask import request
 
 from src.applications.oja.modules import MODULES
+
 from src.framework.browser import Browser
 from src.framework.runner import Runner
+from src.framework.output import Output
+from src.framework.report import Report
+
 
 app = Flask(__name__)
 
+
+# ----------------------------------------------------
+# Home
+# ----------------------------------------------------
 
 @app.route("/")
 def home():
@@ -25,6 +36,10 @@ def home():
     )
 
 
+# ----------------------------------------------------
+# Run Single Module
+# ----------------------------------------------------
+
 @app.post("/run")
 def run_module():
 
@@ -34,13 +49,28 @@ def run_module():
 
     mode = data["mode"]
 
+    # Initialize output/report only for Login
+    # (Login is always the first module in Run All)
+
+    if module == "Login":
+
+        Output.start_execution()
+
+        Report.initialize(mode)
+
     browser = Browser(mode)
 
     try:
 
         page = browser.open()
 
-        runner = Runner(page)
+        runner = Runner(
+
+            page,
+
+            mode
+
+        )
 
         result = runner.run(module)
 
@@ -65,56 +95,18 @@ def run_module():
         browser.close()
 
 
-@app.post("/run_all")
-def run_all():
-
-    data = request.get_json()
-
-    mode = data["mode"]
-
-    results = []
-
-    for module in MODULES.keys():
-
-        browser = Browser(mode)
-
-        try:
-
-            page = browser.open()
-
-            runner = Runner(page)
-
-            results.append(
-
-                runner.run(module)
-
-            )
-
-        except Exception as e:
-
-            print(e)
-
-            results.append({
-
-                "module": module,
-
-                "status": "FAIL",
-
-                "duration": 0
-
-            })
-
-        finally:
-
-            browser.close()
-
-    return jsonify(results)
-
+# ----------------------------------------------------
+# Main
+# ----------------------------------------------------
 
 if __name__ == "__main__":
 
     app.run(
 
-        debug=True
+        debug=True,
+
+        host="0.0.0.0",
+
+        port=5000
 
     )

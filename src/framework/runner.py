@@ -1,17 +1,25 @@
+"""
+runner.py
+
+Executes automation modules.
+"""
+
 from time import time
 
-from src.framework.models.result import Result 
-
-from src.framework.observer.execution_observer import ExecutionObserver 
-
 from src.applications.oja.modules import MODULES
+
+from src.framework.models.result import Result
+from src.framework.observer.execution_observer import ExecutionObserver
+from src.framework.output import Output
+from src.framework.report import Report
 
 
 class Runner:
 
-    def __init__(self, page):
+    def __init__(self, page, mode):
 
         self.page = page
+        self.mode = mode
 
         self.observer = ExecutionObserver()
 
@@ -33,18 +41,69 @@ class Runner:
 
             if status:
 
-                self.observer.passed(result, duration)
+                Output.clear(module)
+
+                self.observer.passed(
+                    result,
+                    duration
+                )
+
+                Report.update(
+                    module=module,
+                    status="PASS",
+                    duration=duration
+                )
 
             else:
 
-                self.observer.failed(result, duration)
+                Output.save_error(
+
+                    module=module,
+
+                    mode=self.mode,
+
+                    duration=duration,
+
+                    reason="Verification Failed"
+
+                )
+
+                self.observer.failed(
+                    result,
+                    duration
+                )
+
+                Report.update(
+                    module=module,
+                    status="FAIL",
+                    duration=duration
+                )
 
         except Exception as e:
 
-            print(e)
-
             duration = round(time() - start, 2)
 
-            self.observer.failed(result, duration)
+            Output.save_error(
+
+                module=module,
+
+                mode=self.mode,
+
+                duration=duration,
+
+                reason=e
+
+            )
+
+            self.observer.failed(
+                result,
+                duration
+            )
+
+            Report.update(
+                module=module,
+                status="FAIL",
+                duration=duration
+            )
 
         return result.to_dict()
