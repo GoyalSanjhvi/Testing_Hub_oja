@@ -2,16 +2,16 @@
                  OJA AUTOMATION EXECUTION REPORT
 ================================================================================
 
-Execution Started : 14-07-2026 11:42:44
+Execution Started : 14-07-2026 11:26:30
 Execution Mode    : REGRESSION
 
 --------------------------------------------------------------------------------
 MODULE                   STATUS         TIME
 --------------------------------------------------------------------------------
-Login                    PASS           2.94 sec
-Dashboard                PASS           6.04 sec
-Prescriptions            PASS           5.86 sec
-Providers                PASS           5.86 sec
-Trackers                 PASS           6.02 sec
-Assessments              PASS           5.92 sec
-Education Hub            PASS           6.06 sec
+Login                    PASS           2.93 sec
+Dashboard                PASS           5.97 sec
+Prescriptions            PASS           6.05 sec
+Providers                PASS           5.78 sec
+Trackers                 FAIL           13.79 sec
+Assessments              PASS           5.86 sec
+Education Hub            FAIL           5.85 sec

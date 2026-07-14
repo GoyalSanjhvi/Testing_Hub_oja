@@ -11,6 +11,10 @@ class BaseNavigation:
 
     TAB_NAME = ""
 
+    # Optional:
+    # Override this only if the page URL is different from TAB_NAME.
+    URL_KEYWORD = None
+
     def __init__(self, page):
 
         self.page = page
@@ -49,11 +53,19 @@ class BaseNavigation:
                 exact=True
             )
 
+            # First preference: active navigation tab
             if tab.get_attribute("aria-current") == "page":
 
                 return True
 
-            if self.TAB_NAME.lower().replace(" ", "") in self.page.url.lower():
+            # Default URL keyword
+            keyword = self.URL_KEYWORD
+
+            if keyword is None:
+
+                keyword = self.TAB_NAME.lower().replace(" ", "")
+
+            if keyword in self.page.url.lower():
 
                 return True
 
