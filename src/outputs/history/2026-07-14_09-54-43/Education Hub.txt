@@ -2,11 +2,11 @@
 OJA AUTOMATION FAILURE REPORT
 ======================================================================
 
-Module          : Trackers
+Module          : Education Hub
 Status          : FAIL
 Execution Mode  : REGRESSION
-Execution Time  : 5.92 sec
-Executed On     : 14-07-2026 11:14:02
+Execution Time  : 6.10 sec
+Executed On     : 14-07-2026 09:35:00
 
 ======================================================================
 Reason

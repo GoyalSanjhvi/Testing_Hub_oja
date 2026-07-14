@@ -1,0 +1,73 @@
+<div class="card">
+
+    <h2>
+
+        Modules
+
+    </h2>
+
+    <table id="module-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Module</th>
+
+                <th>Status</th>
+
+                <th>Time</th>
+
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for module in modules %}
+
+            <tr class="module-row">
+
+                <td>{{ module }}</td>
+
+                <td>
+
+                    <div class="status waiting">
+
+                        WAITING
+
+                    </div>
+
+                </td>
+
+                <td class="duration">
+
+                    --
+
+                </td>
+
+                <td>
+
+                    <button
+
+                        class="run-btn"
+
+                        data-module="{{ module }}">
+
+                        ▶ Run
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>

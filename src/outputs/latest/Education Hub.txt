@@ -5,8 +5,8 @@ OJA AUTOMATION FAILURE REPORT
 Module          : Education Hub
 Status          : FAIL
 Execution Mode  : REGRESSION
-Execution Time  : 6.22 sec
-Executed On     : 13-07-2026 12:14:30
+Execution Time  : 5.94 sec
+Executed On     : 14-07-2026 11:14:16
 
 ======================================================================
 Reason
