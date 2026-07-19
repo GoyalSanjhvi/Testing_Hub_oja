@@ -27,19 +27,29 @@ class BaseNavigation:
 
         print(f"Opening {self.TAB_NAME}...")
 
-        self.page.wait_for_timeout(1000)
-
         tab = self.page.get_by_role(
             "link",
             name=self.TAB_NAME,
             exact=True
         )
 
-        tab.wait_for(state="visible", timeout=10000)
+        tab.wait_for(
 
-        tab.click(force=True)
+            state="visible",
 
-        self.page.wait_for_timeout(2000)
+            timeout=15000
+
+        )
+
+        tab.scroll_into_view_if_needed()
+
+        tab.click()
+
+        self.page.wait_for_load_state(
+
+            "networkidle"
+
+        )
 
     def verify(self):
 
@@ -53,12 +63,12 @@ class BaseNavigation:
                 exact=True
             )
 
-            # First preference: active navigation tab
+            # Active navigation tab
             if tab.get_attribute("aria-current") == "page":
 
                 return True
 
-            # Default URL keyword
+            # URL keyword
             keyword = self.URL_KEYWORD
 
             if keyword is None:

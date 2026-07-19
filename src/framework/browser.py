@@ -34,9 +34,24 @@ class Browser:
 
         )
 
-        self.context = self.browser.new_context()
+        self.context = self.browser.new_context(
+
+            viewport={
+                "width": 1920,
+                "height": 1080
+            }
+
+        )
 
         self.page = self.context.new_page()
+
+        self.page.set_viewport_size({
+
+            "width": 1920,
+
+            "height": 1080
+
+        })
 
         return self.page
 

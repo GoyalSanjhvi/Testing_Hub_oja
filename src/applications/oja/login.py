@@ -15,30 +15,61 @@ class Login:
 
     def open(self):
 
-        self.page.goto(Config.BASE_URL)
+        self.page.goto(
+
+            Config.BASE_URL,
+
+            wait_until="domcontentloaded"
+
+        )
+
+        self.page.wait_for_load_state("networkidle")
 
     def credentials(self):
 
-        self.page.get_by_role(
-            "textbox",
-            name="you@example.com or 98765"
-        ).fill(Config.EMAIL)
+        email = self.page.get_by_role(
 
-        self.page.get_by_role(
             "textbox",
+
+            name="you@example.com or 98765"
+
+        )
+
+        password = self.page.get_by_role(
+
+            "textbox",
+
             name="Enter your password"
-        ).fill(Config.PASSWORD)
+
+        )
+
+        email.wait_for(state="visible", timeout=15000)
+
+        password.wait_for(state="visible", timeout=15000)
+
+        email.fill(Config.EMAIL)
+
+        password.fill(Config.PASSWORD)
 
     def submit(self):
 
-        self.page.get_by_role(
+        button = self.page.get_by_role(
+
             "button",
+
             name="Login"
-        ).click()
+
+        )
+
+        button.wait_for(state="visible", timeout=15000)
+
+        button.click()
 
     def verify(self):
 
         self.page.wait_for_load_state("networkidle")
+
+        self.page.wait_for_timeout(1000)
 
         return "dashboard" in self.page.url.lower()
 
