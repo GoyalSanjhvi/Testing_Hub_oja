@@ -11,7 +11,8 @@ from src.applications.oja.providers import Providers
 from src.applications.oja.trackers import Trackers
 from src.applications.oja.assessments import Assessments
 from src.applications.oja.educationhub import EducationHub
-
+from src.applications.oja.ask_oja_education import AskOjaEducation
+from src.applications.oja.ask_oja_floating import AskOjaFloating
 
 MODULES = {
 
@@ -27,6 +28,10 @@ MODULES = {
 
     "Assessments": Assessments,
 
-    "Education Hub": EducationHub
+    "Education Hub": EducationHub,
+
+    "Ask Oja (Education)": AskOjaEducation,
+
+    "Ask Oja (Floating)": AskOjaFloating
 
 }
