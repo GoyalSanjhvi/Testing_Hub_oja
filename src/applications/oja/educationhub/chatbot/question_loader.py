@@ -20,21 +20,38 @@ class QuestionLoader:
     )
 
     @classmethod
-    def load(cls):
+    def _load_file(cls):
+        """Load all questions from JSON file."""
 
         with open(
-
             cls.FILE,
-
             "r",
-
             encoding="utf-8"
-
         ) as file:
 
-            questions = json.load(file)
+            return json.load(file)
 
-        # Only enabled questions
+    @classmethod
+    def _select_questions(cls, questions):
+        """Randomly select questions based on configuration."""
+
+        if not ChatbotConfig.RANDOMIZE:
+            return questions[:ChatbotConfig.QUESTIONS_PER_RUN]
+
+        if ChatbotConfig.QUESTIONS_PER_RUN >= len(questions):
+            return questions
+
+        return random.sample(
+            questions,
+            ChatbotConfig.QUESTIONS_PER_RUN
+        )
+
+    @classmethod
+    def load(cls):
+        """Load all enabled questions."""
+
+        questions = cls._load_file()
+
         questions = [
 
             question
@@ -45,39 +62,16 @@ class QuestionLoader:
 
         ]
 
-        # Random Questions
-        if QUESTIONS_PER_RUN >= len(questions):
-
-            return questions
-
-        return random.sample(
-
-            questions,
-
-            QUESTIONS_PER_RUN
-
-        )
+        return cls._select_questions(questions)
 
     @classmethod
     def load_by_priority(
-
         cls,
-
         priority
-
     ):
+        """Load enabled questions of a given priority."""
 
-        with open(
-
-            cls.FILE,
-
-            "r",
-
-            encoding="utf-8"
-
-        ) as file:
-
-            questions = json.load(file)
+        questions = cls._load_file()
 
         questions = [
 
@@ -85,50 +79,26 @@ class QuestionLoader:
 
             for question in questions
 
-            if question.get("enabled", True)
-
-            and question.get(
-
-                "priority",
-
-                "Regression"
-
-            ) == priority
+            if (
+                question.get("enabled", True)
+                and question.get(
+                    "priority",
+                    "Regression"
+                ) == priority
+            )
 
         ]
 
-        if QUESTIONS_PER_RUN >= len(questions):
-
-            return questions
-
-        return random.sample(
-
-            questions,
-
-            QUESTIONS_PER_RUN
-
-        )
+        return cls._select_questions(questions)
 
     @classmethod
     def load_by_category(
-
         cls,
-
         category_key
-
     ):
+        """Load enabled questions of a given category."""
 
-        with open(
-
-            cls.FILE,
-
-            "r",
-
-            encoding="utf-8"
-
-        ) as file:
-
-            questions = json.load(file)
+        questions = cls._load_file()
 
         questions = [
 
@@ -136,24 +106,11 @@ class QuestionLoader:
 
             for question in questions
 
-            if question.get("enabled", True)
-
-            and question.get(
-
-                "category_key"
-
-            ) == category_key
+            if (
+                question.get("enabled", True)
+                and question.get("category_key") == category_key
+            )
 
         ]
 
-        if QUESTIONS_PER_RUN >= len(questions):
-
-            return questions
-
-        return random.sample(
-
-            questions,
-
-            QUESTIONS_PER_RUN
-
-        )
+        return cls._select_questions(questions)

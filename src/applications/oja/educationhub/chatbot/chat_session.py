@@ -12,30 +12,24 @@ class ChatSession:
         self.results = []
 
     def add(
-
         self,
-
         question,
-
         response,
-
-        duration,
-
-        status
-
+        status,
+        duration=0
     ):
 
         self.results.append({
 
-            "id": question.id,
+            "id": question.get("id"),
 
-            "category": question.category,
+            "category": question.get("category"),
 
-            "category_key": question.category_key,
+            "category_key": question.get("category_key"),
 
-            "question": question.question,
+            "question": question.get("question"),
 
-            "priority": question.priority,
+            "priority": question.get("priority"),
 
             "response": response,
 
@@ -52,13 +46,9 @@ class ChatSession:
     def passed(self):
 
         return sum(
-
             1
-
             for result in self.results
-
             if result["status"]
-
         )
 
     def failed(self):
@@ -71,14 +61,18 @@ class ChatSession:
 
     def summary(self):
 
+        print("\n" + "=" * 70)
+        print("CHATBOT SUMMARY")
+        print("=" * 70)
+        print(f"Total Questions : {self.total()}")
+        print(f"Passed          : {self.passed()}")
+        print(f"Failed          : {self.failed()}")
+        print("=" * 70)
+
         return {
-
             "total": self.total(),
-
             "passed": self.passed(),
-
             "failed": self.failed()
-
         }
 
     def all(self):

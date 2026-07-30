@@ -21,24 +21,84 @@ class ChatEngine:
 
     def question_box(self):
 
-        return self.page.get_by_role(
-            "textbox",
-            name="Type your health question..."
-        )
+        print("Searching for question textbox...")
+
+        locators = [
+
+            self.page.get_by_placeholder(
+                "Type your health question..."
+            ),
+
+            self.page.get_by_role(
+                "textbox"
+            ),
+
+            self.page.locator("textarea"),
+
+            self.page.locator("input[type='text']"),
+
+            self.page.locator("input")
+
+        ]
+
+        for locator in locators:
+
+            try:
+
+                locator.first.wait_for(
+                    state="visible",
+                    timeout=2000
+                )
+
+                print("Textbox Found")
+
+                return locator.first
+
+            except Exception:
+
+                pass
+
+        raise Exception("Question textbox not found.")
 
     def send_button(self):
 
-        return self.page.get_by_role(
-            "button",
-            name="Send"
-        )
+        print("Searching for Send button...")
+
+        locators = [
+
+            self.page.get_by_role(
+                "button",
+                name="Send"
+            ),
+
+            self.page.locator("button:has-text('Send')"),
+
+            self.page.locator("button[type='submit']")
+
+        ]
+
+        for locator in locators:
+
+            try:
+
+                locator.first.wait_for(
+                    state="visible",
+                    timeout=2000
+                )
+
+                print("Send Button Found")
+
+                return locator.first
+
+            except Exception:
+
+                pass
+
+        print("Send button not found.")
+
+        return None
 
     def response_locator(self):
-        """
-        Temporary V1 locator.
-
-        Replace with assistant message locator later.
-        """
 
         return self.page.locator(
             ".prose, .markdown, p"
@@ -50,29 +110,54 @@ class ChatEngine:
 
     def type_question(self, question):
 
-        print(f"Typing : {question}")
+        print("\nTyping Question:")
+        print(question)
 
         box = self.question_box()
 
-        box.wait_for(state="visible", timeout=10000)
-
         box.click()
+
+        box.fill("")
 
         box.fill(question)
 
+        try:
+
+            value = box.input_value()
+
+            print(f"Textbox Value : {value}")
+
+        except Exception:
+
+            print("Textbox value could not be verified.")
+
     def send(self):
 
-        print("Sending Question")
+        print("\nSending Question...")
 
         button = self.send_button()
 
-        button.wait_for(state="visible", timeout=10000)
+        if button:
 
-        button.click()
+            try:
+
+                button.click()
+
+                print("Send button clicked.")
+
+                return
+
+            except Exception as e:
+
+                print(f"Button click failed : {e}")
+
+        print("Trying ENTER key...")
+
+        self.question_box().press("Enter")
 
     def wait_for_response(self):
 
-        print("Waiting for AI Response...")
+        print("\nWaiting for AI response...")
 
         self.page.wait_for_timeout(5000)
 
@@ -82,25 +167,46 @@ class ChatEngine:
 
         count = responses.count()
 
+        print(f"Response Elements : {count}")
+
         if count == 0:
 
             return ""
 
-        try:
+        print("\nScanning all response elements...")
 
-            response = responses.nth(count - 1).inner_text().strip()
+        for i in range(count - 1, -1, -1):
 
-            print("\nAI Response:\n")
+            try:
 
-            print(response)
+                text = responses.nth(i).inner_text().strip()
 
-            print()
+                if not text:
+                    continue
 
-            return response
+                print(f"[{i}] {text[:80]}")
 
-        except Exception:
+                if (
+                    len(text) > 20
+                    and text.upper() != "SOURCES"
+                    and text.upper() != "SOURCE"
+                    and text.upper() != "REFERENCES"
+                    and "Type your health question" not in text
+                ):
 
-            return ""
+                    print("\nAI RESPONSE")
+                    print("-" * 40)
+                    print(text)
+                    print("-" * 40)
+
+                    return text
+
+            except Exception:
+                pass
+
+        print("No valid AI response found.")
+
+        return ""
 
     # --------------------------------------------------
     # Public API
@@ -108,24 +214,37 @@ class ChatEngine:
 
     def ask(self, question):
 
-        print("=" * 60)
+        print("\n" + "=" * 70)
+        print("CHAT ENGINE")
+        print("=" * 70)
 
-        print(f"Asking : {question}")
+        print(f"\nAsking: {question}")
 
         start = time()
 
+        print("[1] Type Question")
         self.type_question(question)
 
+        print("[2] Question Typed")
+
+        print("[3] Sending")
         self.send()
 
+        print("[4] Sent")
+
+        print("[5] Waiting Response")
         self.wait_for_response()
 
+        print("[6] Response Finished")
+
         response = self.latest_response()
+
+        print("[7] Response Collected")
 
         duration = round(time() - start, 2)
 
         print(f"Completed in {duration} sec")
 
-        print("=" * 60)
+        print("=" * 70)
 
         return response
