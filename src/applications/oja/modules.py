@@ -11,8 +11,8 @@ from src.applications.oja.providers import Providers
 from src.applications.oja.trackers import Trackers
 from src.applications.oja.assessments import Assessments
 from src.applications.oja.educationhub import EducationHub
-from src.applications.oja.ask_oja_education import AskOjaEducation
-from src.applications.oja.ask_oja_floating import AskOjaFloating
+from src.applications.oja.educationhub.ask_oja_education import AskOjaEducation
+from src.applications.oja.educationhub.ask_oja_floating import AskOjaFloating
 
 MODULES = {
 

@@ -8,7 +8,7 @@ import json
 import random
 from pathlib import Path
 
-from src.applications.oja.chatbot.config import ChatbotConfig
+from src.applications.oja.educationhub.chatbot.config import ChatbotConfig
 
 
 class QuestionLoader:

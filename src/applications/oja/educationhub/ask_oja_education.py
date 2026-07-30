@@ -5,7 +5,7 @@ Executes Ask Oja chatbot via Education Hub.
 """
 
 from src.applications.oja.base_navigation import BaseNavigation
-from src.applications.oja.chatbot.base_chatbot import BaseChatbot
+from src.applications.oja.educationhub.chatbot.base_chatbot import BaseChatbot
 
 
 class AskOjaEducation(
