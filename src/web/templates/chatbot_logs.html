@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Chatbot Logs</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>
+        Chatbot Logs
+    </h1>
+
+    <div class="toolbar">
+
+        <input
+
+            id="search"
+
+            type="text"
+
+            placeholder="Search logs..."
+
+        >
+
+        <button
+            id="refreshLogs"
+        >
+            Refresh
+        </button>
+
+        <button
+            id="deleteSelected"
+        >
+            Delete Selected
+        </button>
+
+        <button
+            id="deleteAll"
+        >
+            Delete All
+        </button>
+
+    </div>
+
+    <table
+        id="logsTable"
+    >
+
+        <thead>
+
+        <tr>
+
+            <th>
+
+                <input
+                    type="checkbox"
+                    id="selectAll"
+                >
+
+            </th>
+
+            <th>Date</th>
+
+            <th>Module</th>
+
+            <th>Status</th>
+
+            <th>Questions</th>
+
+            <th>Action</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script
+    src="{{ url_for('static', filename='js/chatbot_logs.js') }}"
+></script>
+
+</body>
+
+</html>

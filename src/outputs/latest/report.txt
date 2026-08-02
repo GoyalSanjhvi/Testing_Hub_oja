@@ -2,19 +2,40 @@
                  OJA AUTOMATION EXECUTION REPORT
 ================================================================================
 
-Execution Started : 30-07-2026 10:51:29
+Execution Started : 31-07-2026 11:14:02
 Execution Mode    : VISUAL
 
 --------------------------------------------------------------------------------
 MODULE                   STATUS         TIME
 --------------------------------------------------------------------------------
-Login                    PASS           3.27 sec
-Dashboard                PASS           4.43 sec
-Prescriptions            PASS           4.80 sec
-Providers                PASS           5.41 sec
-Trackers                 PASS           4.91 sec
-Assessments              PASS           4.21 sec
-Education Hub            PASS           4.42 sec
-Ask Oja (Education)      PASS           22.90 sec
-Ask Oja (Floating)       PASS           19.78 sec
-Ask Oja (Education)      PASS           28.46 sec
+Login                    PASS           4.33 sec
+Dashboard                PASS           5.32 sec
+Prescriptions            PASS           5.64 sec
+Providers                PASS           6.57 sec
+Trackers                 PASS           5.56 sec
+Assessments              PASS           5.64 sec
+Education Hub            PASS           6.23 sec
+Education Content        FAIL           14.92 sec
+Ask Oja (Education)      PASS           24.00 sec
+Ask Oja (Floating)       PASS           21.28 sec
+Dashboard                PASS           4.47 sec
+Dashboard                PASS           5.63 sec
+Providers                PASS           6.60 sec
+Education Content        FAIL           28.67 sec
+Ask Oja (Education)      PASS           25.21 sec
+Education Content        FAIL           11.99 sec
+Education Content        PASS           37.63 sec
+Education Content        PASS           5.69 sec
+Education Content        PASS           5.51 sec
+Education Content        PASS           20.69 sec
+Education Content        PASS           21.91 sec
+Education Content        PASS           20.61 sec
+Education Content        PASS           20.75 sec
+Ask Oja (Education)      FAIL           22.74 sec
+Ask Oja (Education)      FAIL           22.74 sec
+Ask Oja (Education)      PASS           22.89 sec
+Ask Oja (Education)      PASS           31.63 sec
+Ask Oja (Education)      PASS           22.18 sec
+Ask Oja (Education)      PASS           22.64 sec
+Ask Oja (Floating)       PASS           19.54 sec
+Ask Oja (Education)      PASS           22.39 sec

@@ -13,6 +13,7 @@ from src.applications.oja.assessments import Assessments
 from src.applications.oja.educationhub import EducationHub
 from src.applications.oja.educationhub.ask_oja_education import AskOjaEducation
 from src.applications.oja.educationhub.ask_oja_floating import AskOjaFloating
+from src.applications.oja.educationhub.education_content import EducationContent
 
 MODULES = {
 
@@ -29,6 +30,8 @@ MODULES = {
     "Assessments": Assessments,
 
     "Education Hub": EducationHub,
+
+    "Education Content": EducationContent,
 
     "Ask Oja (Education)": AskOjaEducation,
 

@@ -1,0 +1,28 @@
+{
+    "module": "Ask Oja (Floating)",
+    "status": "PASS",
+    "execution_time": "2026-08-02 12:02:19",
+    "duration": 15.34,
+    "questions": [
+        {
+            "id": 992,
+            "category": "Digital Health, Medical Records & Patient Empowerment",
+            "category_key": "digital_health_medical_records_and_patient_empowerment",
+            "priority": "Regression",
+            "question": "Can I seek an online second opinion using my reports?",
+            "response": "Yes, seeking a second opinion using your reports is entirely reasonable. According to Oja's content, choosing where and with whom to undergo fertility treatment is a consequential decision, and it's entirely appropriate to approach it carefully and ask questions.\n\nWhen seeking a second opinion, you can share your existing reports with another doctor or clinic. However, Oja emphasizes the importance of **privacy and data protection**, especially for sensitive reproductive health information. Before sharing your reports online, make sure you:\n\n- Understand what data is being collected and how it will be used and protected\n- Know who can access your information and how long it's kept\n- Give informed consent for its use\n- Choose platforms that handle your sensitive data responsibly and transparently\n\nA reputable clinic or doctor will be transparent about how they protect your information. If you're using a digital platform, check that platform's own clear information about data protection before sharing your reports.\n\nFor personal medical advice on your specific situation and reports, do consult with a qualified fertility provider who can review your individual case.",
+            "duration": 0,
+            "status": "PASS"
+        },
+        {
+            "id": 628,
+            "category": "Diet, Weight & Lifestyle for Fertility",
+            "category_key": "diet_weight_and_lifestyle_for_fertility",
+            "priority": "Regression",
+            "question": "Can poor sleep quality affect hormone levels and fertility?",
+            "response": "Oja doesn't have specific material on sleep quality and its effects on hormones or fertility yet.\n\nWhat Oja does cover is that **stress management supports wellbeing** during fertility treatment, though it's not a cure for infertility on its own. The broader message is that lifestyle factors—including healthy habits—improve the odds and support treatment, but they're not a guaranteed remedy.\n\nFor detailed information about how sleep specifically affects your hormones and fertility, I'd encourage you to discuss this with a qualified healthcare provider, who can give you personalized guidance based on your situation.",
+            "duration": 0,
+            "status": "PASS"
+        }
+    ]
+}

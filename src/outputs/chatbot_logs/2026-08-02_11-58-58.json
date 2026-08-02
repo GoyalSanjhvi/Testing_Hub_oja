@@ -1,0 +1,28 @@
+{
+    "module": "Ask Oja (Education)",
+    "status": "PASS",
+    "execution_time": "2026-08-02 11:58:58",
+    "duration": 17.85,
+    "questions": [
+        {
+            "id": 107,
+            "category": "AMH & Ovarian Reserve",
+            "category_key": "amh_and_ovarian_reserve",
+            "priority": "Regression",
+            "question": "Should I get AMH tested even if my periods are completely regular?",
+            "response": "Ask Oja\nOnline · Your AI health companion",
+            "duration": 0,
+            "status": "PASS"
+        },
+        {
+            "id": 741,
+            "category": "Post-IVF Pregnancy, Precautions & Early Care",
+            "category_key": "post_ivf_pregnancy_precautions_and_early_care",
+            "priority": "Regression",
+            "question": "Can a twin IVF pregnancy be reduced to a singleton, and is that legal in India?",
+            "response": "Ask Oja\nOnline · Your AI health companion",
+            "duration": 0,
+            "status": "PASS"
+        }
+    ]
+}

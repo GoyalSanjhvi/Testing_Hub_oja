@@ -71,9 +71,13 @@ class ChatEngine:
                 name="Send"
             ),
 
-            self.page.locator("button:has-text('Send')"),
+            self.page.locator(
+                "button:has-text('Send')"
+            ),
 
-            self.page.locator("button[type='submit']")
+            self.page.locator(
+                "button[type='button']"
+            )
 
         ]
 
@@ -94,15 +98,7 @@ class ChatEngine:
 
                 pass
 
-        print("Send button not found.")
-
         return None
-
-    def response_locator(self):
-
-        return self.page.locator(
-            ".prose, .markdown, p"
-        )
 
     # --------------------------------------------------
     # Actions
@@ -123,13 +119,14 @@ class ChatEngine:
 
         try:
 
-            value = box.input_value()
-
-            print(f"Textbox Value : {value}")
+            print(
+                "Textbox Value :",
+                box.input_value()
+            )
 
         except Exception:
 
-            print("Textbox value could not be verified.")
+            pass
 
     def send(self):
 
@@ -147,11 +144,9 @@ class ChatEngine:
 
                 return
 
-            except Exception as e:
+            except Exception:
 
-                print(f"Button click failed : {e}")
-
-        print("Trying ENTER key...")
+                pass
 
         self.question_box().press("Enter")
 
@@ -161,50 +156,52 @@ class ChatEngine:
 
         self.page.wait_for_timeout(5000)
 
+    # --------------------------------------------------
+    # AI RESPONSE
+    # --------------------------------------------------
+
     def latest_response(self):
 
-        responses = self.response_locator()
+        print("\nSearching latest AI response...")
 
-        count = responses.count()
+        locator = self.page.locator(
+            "div.max-w-\\[70\\%\\].items-start > div > p"
+        )
 
-        print(f"Response Elements : {count}")
+        count = locator.count()
+
+        print(f"AI Responses Found : {count}")
 
         if count == 0:
 
-            return ""
+            print("No AI response found.")
 
-        print("\nScanning all response elements...")
+            return ""
 
         for i in range(count - 1, -1, -1):
 
             try:
 
-                text = responses.nth(i).inner_text().strip()
+                response = locator.nth(i).inner_text().strip()
 
-                if not text:
+                if not response:
+
                     continue
 
-                print(f"[{i}] {text[:80]}")
+                if len(response) < 20:
 
-                if (
-                    len(text) > 20
-                    and text.upper() != "SOURCES"
-                    and text.upper() != "SOURCE"
-                    and text.upper() != "REFERENCES"
-                    and "Type your health question" not in text
-                ):
+                    continue
 
-                    print("\nAI RESPONSE")
-                    print("-" * 40)
-                    print(text)
-                    print("-" * 40)
+                print("\n==============================")
+                print(f"Response {i}")
+                print("==============================")
+                print(response)
 
-                    return text
+                return response
 
             except Exception:
-                pass
 
-        print("No valid AI response found.")
+                continue
 
         return ""
 
@@ -241,7 +238,10 @@ class ChatEngine:
 
         print("[7] Response Collected")
 
-        duration = round(time() - start, 2)
+        duration = round(
+            time() - start,
+            2
+        )
 
         print(f"Completed in {duration} sec")
 

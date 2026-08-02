@@ -14,6 +14,7 @@ class AskOjaEducation(
 ):
 
     TAB_NAME = "Education Hub"
+    MODULE_NAME = "Ask Oja (Education)"
 
     def __init__(self, page):
 

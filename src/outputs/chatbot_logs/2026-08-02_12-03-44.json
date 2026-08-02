@@ -1,0 +1,28 @@
+{
+    "module": "Ask Oja (Education)",
+    "status": "PASS",
+    "execution_time": "2026-08-02 12:03:44",
+    "duration": 18.18,
+    "questions": [
+        {
+            "id": 771,
+            "category": "Contraception & Fertility After Stopping Birth Control",
+            "category_key": "contraception_and_fertility_after_stopping_birth_control",
+            "priority": "Regression",
+            "question": "Can stopping contraception suddenly cause irregular cycles that affect conception?",
+            "response": "Stopping contraception can temporarily affect your cycle regularity, but this is usually a normal adjustment rather than a lasting problem.\n\nAccording to Oja's content, **combined hormonal methods like the pill** typically allow fertility to return quickly—often within the first cycle or two—though it can take some time for regular cycles to re-establish in some women. There's no need to stop these methods long in advance; you just need to allow cycles to normalize.\n\n**Barrier methods like condoms** have no effect on future fertility at all, since fertility resumes immediately.\n\nThe content notes that **irregular cycles are common and have many causes**—stress, significant weight change, thyroid problems, and polycystic ovary syndrome among them. Occasional variation is normal, but if your cycles become consistently very short, very long, absent, or unpredictable after stopping contraception, it's worth discussing with a doctor. This matters both because irregular cycles can make timing conception harder and because they can point to an underlying condition that's treatable.\n\nIf you're concerned about your cycle pattern after stopping contraception, a healthcare provider can help determine whether it's a normal adjustment or something that needs investigation.",
+            "duration": 0,
+            "status": "PASS"
+        },
+        {
+            "id": 873,
+            "category": "IVF Timeline, Monitoring & Recovery",
+            "category_key": "ivf_timeline_monitoring_and_recovery",
+            "priority": "Regression",
+            "question": "Can I travel between IVF appointments?",
+            "response": "Yes, you can travel between IVF appointments. According to Oja's content, fertility treatment doesn't happen in isolation—people continue to manage daily responsibilities, including travel, while undergoing it.\n\nThat said, IVF does involve multiple appointments for monitoring that often come at short notice as your cycle progresses. So while travel is possible, it's worth planning carefully around your clinic's schedule. Once you know your appointment dates, you can arrange trips that fit around them. It's a good idea to discuss your travel plans with your clinic so they can help you anticipate timing and any flexibility you might need.",
+            "duration": 0,
+            "status": "PASS"
+        }
+    ]
+}

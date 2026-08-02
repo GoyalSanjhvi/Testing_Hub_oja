@@ -1,0 +1,28 @@
+{
+    "module": "Ask Oja (Education)",
+    "status": "PASS",
+    "execution_time": "2026-08-02 11:56:40",
+    "duration": 17.96,
+    "questions": [
+        {
+            "id": 706,
+            "category": "Family Pressure & Emotional Wellbeing",
+            "category_key": "family_pressure_and_emotional_wellbeing",
+            "priority": "Regression",
+            "question": "How do we cope with a miscarriage after a long fertility journey?",
+            "response": "This AI provides general health information only. Always consult healthcare professionals for medical advice.",
+            "duration": 0,
+            "status": "PASS"
+        },
+        {
+            "id": 88,
+            "category": "PCOS / PCOD",
+            "category_key": "pcos__pcod",
+            "priority": "Regression",
+            "question": "Does PCOS get worse with age?",
+            "response": "This AI provides general health information only. Always consult healthcare professionals for medical advice.",
+            "duration": 0,
+            "status": "PASS"
+        }
+    ]
+}

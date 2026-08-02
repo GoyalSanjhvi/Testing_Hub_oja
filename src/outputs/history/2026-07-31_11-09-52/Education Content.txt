@@ -1,0 +1,18 @@
+======================================================================
+OJA AUTOMATION FAILURE REPORT
+======================================================================
+
+Module          : Education Content
+Status          : FAIL
+Execution Mode  : VISUAL
+Execution Time  : 78.96 sec
+Executed On     : 31-07-2026 08:28:28
+
+======================================================================
+Reason
+======================================================================
+
+Locator.click: Target page, context or browser has been closed
+Call log:
+  - waiting for get_by_text("Articles", exact=True).first
+

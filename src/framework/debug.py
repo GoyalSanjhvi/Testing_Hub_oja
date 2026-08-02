@@ -1,170 +1,124 @@
 """
-debug.py
+locator_debug.py
 
-Debug utility for Playwright automation.
+Utility for discovering Playwright locators.
 """
 
-from pathlib import Path
 
-
-class Debug:
-
-    OUTPUT = Path("src/outputs/debug")
+class LocatorDebug:
 
     @classmethod
-    def dump(cls, page, name="page"):
+    def inspect(cls, page):
 
-        cls.OUTPUT.mkdir(
-            parents=True,
-            exist_ok=True
-        )
+        print("\n" + "=" * 100)
+        print("LOCATOR DEBUG")
+        print("=" * 100)
 
-        print("\n" + "=" * 80)
-        print("DEBUG INFORMATION")
-        print("=" * 80)
+        selectors = [
 
-        # -------------------------------------------------
-        # URL
-        # -------------------------------------------------
+            ("Tabs", "[role='tab']"),
 
-        print(f"\nCurrent URL : {page.url}")
+            ("Buttons", "button"),
 
-        # -------------------------------------------------
-        # Screenshot
-        # -------------------------------------------------
+            ("Links", "a"),
 
-        screenshot = cls.OUTPUT / f"{name}.png"
+            ("Role Buttons", "[role='button']"),
 
-        page.screenshot(
-            path=str(screenshot),
-            full_page=True
-        )
+            ("Divs", "div"),
 
-        print(f"\nScreenshot Saved : {screenshot}")
+            ("Spans", "span"),
 
-        # -------------------------------------------------
-        # HTML
-        # -------------------------------------------------
+            ("Inputs", "input"),
 
-        html = cls.OUTPUT / f"{name}.html"
+            ("Textareas", "textarea")
 
-        with open(
-            html,
-            "w",
-            encoding="utf-8"
-        ) as file:
+        ]
 
-            file.write(page.content())
+        for title, selector in selectors:
 
-        print(f"HTML Saved       : {html}")
+            print("\n" + "=" * 100)
+            print(title.upper())
+            print("=" * 100)
 
-        # -------------------------------------------------
-        # Visible Text
-        # -------------------------------------------------
+            elements = page.locator(selector)
 
-        print("\nVISIBLE PAGE TEXT")
-        print("-" * 80)
+            try:
 
-        try:
+                count = elements.count()
 
-            print(
-                page.locator("body").inner_text()
-            )
+                print(f"Selector : {selector}")
+                print(f"Elements : {count}\n")
 
-        except Exception as e:
+                for i in range(count):
 
-            print(e)
+                    try:
 
-        print("-" * 80)
+                        element = elements.nth(i)
 
-        # -------------------------------------------------
-        # Buttons
-        # -------------------------------------------------
+                        text = element.inner_text().strip()
 
-        print("\nBUTTONS FOUND")
-        print("-" * 80)
+                        if not text:
+                            continue
 
-        buttons = page.locator("button")
+                        role = element.get_attribute("role")
+                        data_testid = element.get_attribute("data-testid")
+                        aria_label = element.get_attribute("aria-label")
+                        cls_name = element.get_attribute("class")
+                        element_id = element.get_attribute("id")
 
-        try:
+                        print("-" * 100)
 
-            count = buttons.count()
+                        print(f"Index      : {i}")
+                        print(f"Text       : {text}")
+                        print(f"Role       : {role}")
+                        print(f"Id         : {element_id}")
+                        print(f"Class      : {cls_name}")
+                        print(f"Aria Label : {aria_label}")
+                        print(f"DataTestId : {data_testid}")
 
-            print(f"Total Buttons : {count}\n")
+                        print("\nSuggested Locators")
 
-            for i in range(count):
+                        print(
+                            f'page.get_by_text("{text}", exact=True)'
+                        )
 
-                try:
+                        if selector == "button":
 
-                    print(
-                        f"{i} : "
-                        f"{buttons.nth(i).inner_text()}"
-                    )
+                            print(
+                                f'page.locator("button").filter(has_text="{text}")'
+                            )
 
-                except:
+                        if selector == "a":
 
-                    print(
-                        f"{i} : <No Text>"
-                    )
+                            print(
+                                f'page.locator("a").filter(has_text="{text}")'
+                            )
 
-        except Exception as e:
+                        if role:
 
-            print(e)
+                            print(
+                                f'page.get_by_role("{role}", name="{text}")'
+                            )
 
-        print("-" * 80)
+                        if data_testid:
 
-        # -------------------------------------------------
-        # Links
-        # -------------------------------------------------
+                            print(
+                                f'page.locator("[data-testid=\\"{data_testid}\\"]")'
+                            )
 
-        print("\nLINKS FOUND")
-        print("-" * 80)
+                        if element_id:
 
-        links = page.locator("a")
+                            print(
+                                f'page.locator("#{element_id}")'
+                            )
 
-        try:
+                    except Exception:
+                        continue
 
-            count = links.count()
+            except Exception as e:
 
-            print(f"Total Links : {count}\n")
+                print(e)
 
-            for i in range(count):
-
-                try:
-
-                    print(
-                        f"{i} : "
-                        f"{links.nth(i).inner_text()}"
-                    )
-
-                except:
-
-                    print(
-                        f"{i} : <No Text>"
-                    )
-
-        except Exception as e:
-
-            print(e)
-
-        print("-" * 80)
-
-        # -------------------------------------------------
-        # Ask Oja Search
-        # -------------------------------------------------
-
-        print("\nSEARCHING FOR 'Ask Oja'")
-        print("-" * 80)
-
-        try:
-
-            print(
-                "Text Count :",
-                page.get_by_text("Ask Oja").count()
-            )
-
-        except Exception as e:
-
-            print(e)
-
-        print("=" * 80)
+        print("\n" + "=" * 100)
+        print("END OF LOCATOR DEBUG")
+        print("=" * 100)

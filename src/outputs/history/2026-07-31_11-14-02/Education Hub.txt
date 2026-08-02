@@ -2,11 +2,11 @@
 OJA AUTOMATION FAILURE REPORT
 ======================================================================
 
-Module          : Ask Oja (Floating)
+Module          : Education Hub
 Status          : FAIL
 Execution Mode  : VISUAL
-Execution Time  : 6.44 sec
-Executed On     : 29-07-2026 04:59:54
+Execution Time  : 29.01 sec
+Executed On     : 31-07-2026 11:11:05
 
 ======================================================================
 Reason

@@ -14,6 +14,7 @@ class AskOjaFloating(
 ):
 
     TAB_NAME = "Dashboard"
+    MODULE_NAME = "Ask Oja (Floating)"
 
     def __init__(self, page):
 
