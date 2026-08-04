@@ -2,7 +2,7 @@
 dashboard.py
 """
 
-from src.applications.oja.base_navigation import BaseNavigation
+from src.applications.common.base_navigation import BaseNavigation
 
 
 class Dashboard(BaseNavigation):

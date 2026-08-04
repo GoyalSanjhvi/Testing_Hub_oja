@@ -25,15 +25,25 @@ def run_module():
 
     data = request.get_json()
 
+    application = data.get(
+
+        "application",
+
+        "oja"
+
+    )
+
     module = data["module"]
 
     mode = data["mode"]
 
     result = ExecutionService.run(
 
-        module,
+        application=application,
 
-        mode
+        module=module,
+
+        mode=mode
 
     )
 

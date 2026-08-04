@@ -4,7 +4,7 @@ ask_oja_floating.py
 Executes Ask Oja chatbot via Floating Chat.
 """
 
-from src.applications.oja.base_navigation import BaseNavigation
+from src.applications.common.base_navigation import BaseNavigation
 from src.applications.oja.educationhub.chatbot.base_chatbot import BaseChatbot
 
 

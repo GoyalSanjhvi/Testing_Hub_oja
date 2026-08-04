@@ -1,0 +1,28 @@
+{
+    "module": "Ask Oja (Education)",
+    "status": "PASS",
+    "execution_time": "2026-08-04 09:06:50",
+    "duration": 18.04,
+    "questions": [
+        {
+            "id": 102,
+            "category": "AMH & Ovarian Reserve",
+            "category_key": "amh_and_ovarian_reserve",
+            "priority": "Regression",
+            "question": "Does AMH predict egg quality, or only egg quantity?",
+            "response": "AMH measures **egg quantity only, not egg quality**. \n\nA higher AMH indicates a larger pool of remaining follicles, while a lower AMH suggests a smaller reserve. However, AMH does not tell you anything about whether those eggs are healthy or chromosomally normal. It's also important to know that a woman with low AMH can still conceive, and a woman with high AMH is not guaranteed to.\n\nFor a complete picture of your ovarian reserve, AMH is often paired with an antral follicle count (an ultrasound that counts visible small follicles).",
+            "duration": 0,
+            "status": "PASS"
+        },
+        {
+            "id": 588,
+            "category": "Legal & Regulatory Framework (India)",
+            "category_key": "legal_and_regulatory_framework_india",
+            "priority": "Regression",
+            "question": "Are fertility clinics legally required to register under this Act?",
+            "response": "Yes, according to the Oja content, fertility clinics are legally required to be properly registered and operate within the legal framework in India.\n\nThe content emphasizes that when choosing a clinic, it should be \"properly registered and operate within the legal framework\" — this is presented as a fundamental requirement, not optional. The legal framework governing fertility treatment in India includes the ART (Regulation) Act, 2021 & Rules, 2022.\n\nFor specific details about registration requirements, current compliance status, or to verify a clinic's registration, I'd recommend contacting the clinic directly or seeking guidance from a qualified legal advisor familiar with fertility law in India.",
+            "duration": 0,
+            "status": "PASS"
+        }
+    ]
+}

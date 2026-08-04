@@ -4,7 +4,7 @@ modules.py
 Central registry of all Oja test modules.
 """
 
-from src.applications.oja.login import Login
+from src.applications.common.login import Login
 from src.applications.oja.dashboard import Dashboard
 from src.applications.oja.prescriptions import Prescriptions
 from src.applications.oja.providers import Providers

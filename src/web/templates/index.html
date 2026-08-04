@@ -11,6 +11,8 @@ OJA Regression Framework
 
 {% include "components/header.html" %}
 
+{% include "components/application.html" %}
+
 {% include "components/mode.html" %}
 
 {% include "components/modules.html" %}
@@ -18,5 +20,11 @@ OJA Regression Framework
 {% include "components/footer.html" %}
 
 {% include "components/summary.html" %}
+
+<script>
+
+const APPLICATIONS = {{ applications | tojson }};
+
+</script>
 
 {% endblock %}

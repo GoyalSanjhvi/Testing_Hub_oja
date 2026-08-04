@@ -13,6 +13,17 @@ import {
 } from "./summary.js";
 
 
+function getApplication() {
+
+    return document.getElementById(
+
+        "application"
+
+    ).value;
+
+}
+
+
 async function executeModule(row) {
 
     const button = row.querySelector(".run-btn");
@@ -31,25 +42,33 @@ async function executeModule(row) {
 
     try {
 
-        const response = await fetch("/run", {
+        const response = await fetch(
 
-            method: "POST",
+            "/run",
 
-            headers: {
+            {
 
-                "Content-Type": "application/json"
+                method: "POST",
 
-            },
+                headers: {
 
-            body: JSON.stringify({
+                    "Content-Type": "application/json"
 
-                module: button.dataset.module,
+                },
 
-                mode: getMode()
+                body: JSON.stringify({
 
-            })
+                    application: getApplication(),
 
-        });
+                    module: button.dataset.module,
+
+                    mode: getMode()
+
+                })
+
+            }
+
+        );
 
         const result = await response.json();
 
@@ -98,59 +117,90 @@ async function executeModule(row) {
 
 export function initializeExecution() {
 
-    // -----------------------------
-    // Individual Run
-    // -----------------------------
+    // -------------------------------------------------
+    // Event Delegation
+    // -------------------------------------------------
 
-    document
-        .querySelectorAll(".run-btn")
-        .forEach(button => {
+    document.addEventListener(
 
-            button.addEventListener("click", async () => {
+        "click",
 
-                const row = button.closest("tr");
+        async event => {
 
-                await executeModule(row);
+            const button = event.target.closest(
 
-            });
+                ".run-btn"
 
-        });
+            );
 
+            if (!button) {
 
-    // -----------------------------
+                return;
+
+            }
+
+            const row = button.closest(
+
+                ".module-row"
+
+            );
+
+            await executeModule(
+
+                row
+
+            );
+
+        }
+
+    );
+
+    // -------------------------------------------------
     // Run All
-    // -----------------------------
+    // -------------------------------------------------
 
-    document
-        .getElementById("run-all")
-        .addEventListener("click", async () => {
+    document.getElementById(
 
-            const runAll = document.getElementById("run-all");
+        "run-all"
+
+    ).addEventListener(
+
+        "click",
+
+        async () => {
+
+            const runAll = document.getElementById(
+
+                "run-all"
+
+            );
 
             runAll.disabled = true;
 
             runAll.innerText = "Running...";
 
-            const rows = document.querySelectorAll(".module-row");
+            const rows = document.querySelectorAll(
 
-            document
-                .querySelectorAll(".run-btn")
-                .forEach(btn => btn.disabled = true);
+                ".module-row"
+
+            );
 
             for (const row of rows) {
 
-                await executeModule(row);
+                await executeModule(
+
+                    row
+
+                );
 
             }
-
-            document
-                .querySelectorAll(".run-btn")
-                .forEach(btn => btn.disabled = false);
 
             runAll.disabled = false;
 
             runAll.innerText = "🚀 Run All Tests";
 
-        });
+        }
+
+    );
 
 }

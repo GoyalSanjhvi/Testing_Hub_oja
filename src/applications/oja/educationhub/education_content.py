@@ -4,9 +4,10 @@ education_content.py
 Education Hub Content Automation.
 """
 
-from src.applications.oja.base_navigation import BaseNavigation
+from src.applications.common.base_navigation import BaseNavigation
+from src.applications.common.navigation import Navigation
 
-from .content.tabs import Tabs
+from .content.constants import ContentConstants
 
 
 class EducationContent(BaseNavigation):
@@ -31,9 +32,22 @@ class EducationContent(BaseNavigation):
 
             print("Education Hub opened successfully.")
 
-            tabs = Tabs(self.page)
+            navigation = Navigation(
 
-            tabs.click_all()
+                self.page,
+
+                timeout=ContentConstants.LOAD_TIMEOUT,
+
+                wait_time=ContentConstants.WAIT_TIME
+
+            )
+
+            navigation.click_all(
+
+                ContentConstants.TABS,
+                role="button"
+
+            )
 
             print("\nEducation Content Passed")
 

@@ -1,0 +1,28 @@
+{
+    "module": "Ask Oja (Education)",
+    "status": "PASS",
+    "execution_time": "2026-08-04 09:11:51",
+    "duration": 18.23,
+    "questions": [
+        {
+            "id": 718,
+            "category": "Choosing a Clinic, Doctor & Second Opinions",
+            "category_key": "choosing_a_clinic_doctor_and_second_opinions",
+            "priority": "Regression",
+            "question": "Can I request a written explanation of my treatment plan?",
+            "response": "Yes, absolutely. According to Oja's guidance, being informed and engaged with your care is important—and that includes understanding your treatment plan. Keeping records of your own care and asking questions freely are part of being an active partner in your treatment.\n\nA written explanation of your plan (what medicines you'll take, what tests are scheduled, what procedures are planned, and why) helps you stay organized and informed. I'd encourage you to ask your clinic or doctor directly for this. A reputable clinic should be transparent and willing to explain your options and plan clearly.\n\nIf anything in the written plan isn't clear, don't hesitate to ask your doctor for clarification—they're the ones who know your individual situation and can answer specific questions about your care.",
+            "duration": 0,
+            "status": "PASS"
+        },
+        {
+            "id": 994,
+            "category": "Digital Health, Medical Records & Patient Empowerment",
+            "category_key": "digital_health_medical_records_and_patient_empowerment",
+            "priority": "Regression",
+            "question": "What is an ABHA Health ID, and should I create one?",
+            "response": "Oja's content mentions ABHA (Ayushman Bharat Health Account) as part of India's official national digital-health system, but it doesn't include detailed information about what an ABHA Health ID is, how to create one, or whether you should get one.\n\nFor specifics about ABHA—what it does, eligibility, how to set it up, and whether it's right for you—Oja recommends checking directly with your national health authority or the official ABHA platform itself.\n\nWhat Oja does emphasize is that whichever digital health tools you use, you should choose platforms that are transparent about how they collect, protect, and use your sensitive reproductive health data, and that put you in control of your information. If you do explore any digital health system, it's worth checking their privacy and data-protection policies first.",
+            "duration": 0,
+            "status": "PASS"
+        }
+    ]
+}

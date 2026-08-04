@@ -24,50 +24,110 @@
 
         </thead>
 
-        <tbody>
-
-            {% for module in modules %}
-
-            <tr class="module-row">
-
-                <td>{{ module }}</td>
-
-                <td>
-
-                    <div class="status waiting">
-
-                        WAITING
-
-                    </div>
-
-                </td>
-
-                <td class="duration">
-
-                    --
-
-                </td>
-
-                <td>
-
-                    <button
-
-                        class="run-btn"
-
-                        data-module="{{ module }}">
-
-                        ▶ Run
-
-                    </button>
-
-                </td>
-
-            </tr>
-
-            {% endfor %}
+        <tbody id="module-body">
 
         </tbody>
 
     </table>
 
 </div>
+
+<script>
+
+function buildModules() {
+
+    const application = document.getElementById(
+
+        "application"
+
+    ).value;
+
+    const body = document.getElementById(
+
+        "module-body"
+
+    );
+
+    body.innerHTML = "";
+
+    const modules = APPLICATIONS[
+
+        application
+
+    ].modules;
+
+    modules.forEach(module => {
+
+        body.innerHTML += `
+
+        <tr class="module-row">
+
+            <td>${module}</td>
+
+            <td>
+
+                <div class="status waiting">
+
+                    WAITING
+
+                </div>
+
+            </td>
+
+            <td class="duration">
+
+                --
+
+            </td>
+
+            <td>
+
+                <button
+
+                    class="run-btn"
+
+                    data-module="${module}">
+
+                    ▶ Run
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    () => {
+
+        buildModules();
+
+    }
+
+);
+
+document.getElementById(
+
+    "application"
+
+).addEventListener(
+
+    "change",
+
+    () => {
+
+        buildModules();
+
+    }
+
+);
+
+</script>

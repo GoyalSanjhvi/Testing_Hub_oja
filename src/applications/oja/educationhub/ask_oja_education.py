@@ -4,7 +4,7 @@ ask_oja_education.py
 Executes Ask Oja chatbot via Education Hub.
 """
 
-from src.applications.oja.base_navigation import BaseNavigation
+from src.applications.common.base_navigation import BaseNavigation
 from src.applications.oja.educationhub.chatbot.base_chatbot import BaseChatbot
 
 

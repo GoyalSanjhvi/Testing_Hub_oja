@@ -1,0 +1,28 @@
+{
+    "module": "Ask Oja (Floating)",
+    "status": "PASS",
+    "execution_time": "2026-08-04 09:07:13",
+    "duration": 15.4,
+    "questions": [
+        {
+            "id": 617,
+            "category": "Diet, Weight & Lifestyle for Fertility",
+            "category_key": "diet_weight_and_lifestyle_for_fertility",
+            "priority": "Regression",
+            "question": "Does alcohol consumption affect female fertility?",
+            "response": "The Oja content I have doesn't include specific information about alcohol's effect on female fertility. \n\nWhat I can tell you is that Oja covers how lifestyle genuinely influences fertility for both partners, and that the habits supporting general health also support reproductive health. For detailed guidance on alcohol and your fertility specifically, I'd encourage you to speak with a qualified healthcare provider—they can give you personalized advice based on your situation.\n\nIs there anything else about fertility and lifestyle that I can help with?",
+            "duration": 0,
+            "status": "PASS"
+        },
+        {
+            "id": 898,
+            "category": "Male Fertility — Advanced Evaluation",
+            "category_key": "male_fertility_—_advanced_evaluation",
+            "priority": "Regression",
+            "question": "When is testosterone testing recommended?",
+            "response": "Oja doesn't have specific material on testosterone testing recommendations yet.\n\nWhat the content does cover is that for men, the **semen analysis is the central test** in fertility evaluation, and that **hormonal blood tests including thyroid and prolactin are common** for both partners. For personalized advice about whether testosterone testing is right for your situation, I'd recommend discussing it with your doctor—they can assess what tests make sense for you.",
+            "duration": 0,
+            "status": "PASS"
+        }
+    ]
+}

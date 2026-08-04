@@ -1,0 +1,28 @@
+{
+    "module": "Ask Oja (Floating)",
+    "status": "PASS",
+    "execution_time": "2026-08-04 09:12:13",
+    "duration": 15.45,
+    "questions": [
+        {
+            "id": 517,
+            "category": "Embryo Testing & Genetic Screening",
+            "category_key": "embryo_testing_and_genetic_screening",
+            "priority": "Regression",
+            "question": "What is NIPT, and how is it different from PGT?",
+            "response": "Oja doesn't have material on NIPT (noninvasive prenatal testing) yet, so I can't explain that or compare it to PGT from our content.\n\nWhat I *can* tell you about PGT: It's preimplantation genetic testing, which examines embryos created through IVF *before* one is transferred to your uterus. It can screen for the correct number of chromosomes (helpful for older women or recurrent pregnancy loss) or test for a specific inherited disease when there's a known family risk. The goal is to reduce the risk of passing on serious inherited conditions and select embryos most likely to result in a healthy pregnancy.\n\nFor details on NIPT and how the two differ, I'd encourage you to ask your fertility specialist or doctor—they can explain both options and which might be relevant for your situation.",
+            "duration": 0,
+            "status": "PASS"
+        },
+        {
+            "id": 590,
+            "category": "Legal & Regulatory Framework (India)",
+            "category_key": "legal_and_regulatory_framework_india",
+            "priority": "Regression",
+            "question": "What happens if a clinic violates ART Act rules?",
+            "response": "Oja's content covers that the ART (Regulation) Act exists and that clinics must be properly registered and operate within its legal framework, but it doesn't detail the specific consequences or enforcement mechanisms if a clinic violates those rules.\n\nWhat Oja does emphasize is that you should choose a clinic that is properly registered and operates transparently within the law—because acting within the legal framework protects the clinic, you as a patient, and any resulting child.\n\nFor details on what happens when violations occur, I'd recommend speaking with a qualified legal advisor or contacting the relevant regulatory body in India that oversees fertility clinics. They can give you current, authoritative information on enforcement and remedies.",
+            "duration": 0,
+            "status": "PASS"
+        }
+    ]
+}
