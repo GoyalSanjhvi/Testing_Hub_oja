@@ -7,6 +7,7 @@ Routes for chatbot execution logs.
 from flask import (
     Blueprint,
     jsonify,
+    render_template,
     request
 )
 
@@ -24,11 +25,32 @@ chatbot_logs_bp = Blueprint(
 )
 
 
+# ==========================================================
+# PAGE
+# ==========================================================
+
 @chatbot_logs_bp.route(
 
-    "/chatbot-logs",
+    "/chatbot-logs"
 
-    methods=["GET"]
+)
+
+def chatbot_logs_page():
+
+    return render_template(
+
+        "chatbot_logs.html"
+
+    )
+
+
+# ==========================================================
+# API
+# ==========================================================
+
+@chatbot_logs_bp.route(
+
+    "/api/chatbot-logs"
 
 )
 
@@ -43,9 +65,7 @@ def all_logs():
 
 @chatbot_logs_bp.route(
 
-    "/chatbot-logs/<filename>",
-
-    methods=["GET"]
+    "/api/chatbot-logs/<filename>"
 
 )
 
@@ -64,7 +84,7 @@ def get_log(filename):
 
 @chatbot_logs_bp.route(
 
-    "/chatbot-logs/<filename>",
+    "/api/chatbot-logs/<filename>",
 
     methods=["DELETE"]
 
@@ -72,26 +92,22 @@ def get_log(filename):
 
 def delete_log(filename):
 
-    success = ChatbotLogService.delete_log(
+    return jsonify({
 
-        filename
+        "success":
 
-    )
+        ChatbotLogService.delete_log(
 
-    return jsonify(
+            filename
 
-        {
+        )
 
-            "success": success
-
-        }
-
-    )
+    })
 
 
 @chatbot_logs_bp.route(
 
-    "/chatbot-logs/delete-selected",
+    "/api/chatbot-logs/delete-selected",
 
     methods=["POST"]
 
@@ -101,34 +117,28 @@ def delete_selected():
 
     data = request.get_json()
 
-    filenames = data.get(
+    return jsonify({
 
-        "filenames",
+        "deleted":
 
-        []
+        ChatbotLogService.delete_logs(
 
-    )
+            data.get(
 
-    deleted = ChatbotLogService.delete_logs(
+                "filenames",
 
-        filenames
+                []
 
-    )
+            )
 
-    return jsonify(
+        )
 
-        {
-
-            "deleted": deleted
-
-        }
-
-    )
+    })
 
 
 @chatbot_logs_bp.route(
 
-    "/chatbot-logs/delete-all",
+    "/api/chatbot-logs/delete-all",
 
     methods=["DELETE"]
 
@@ -138,12 +148,8 @@ def delete_all():
 
     ChatbotLogService.delete_all()
 
-    return jsonify(
+    return jsonify({
 
-        {
+        "success": True
 
-            "success": True
-
-        }
-
-    )
+    })

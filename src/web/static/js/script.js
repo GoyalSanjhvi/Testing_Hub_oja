@@ -13,10 +13,44 @@ import {
 } from "./execution.js";
 
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener(
 
-    initializeReportButton();
+    "DOMContentLoaded",
 
-    initializeExecution();
+    () => {
 
-});
+        initializeReportButton();
+
+        initializeExecution();
+
+        //
+        // Chatbot Logs Button
+        //
+
+        const logsButton = document.getElementById(
+
+            "chatbot-logs"
+
+        );
+
+        if (logsButton) {
+
+            logsButton.addEventListener(
+
+                "click",
+
+                () => {
+
+                    window.location.href =
+
+                        "/chatbot-logs";
+
+                }
+
+            );
+
+        }
+
+    }
+
+);
