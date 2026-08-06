@@ -1,24 +1,53 @@
 """
 app.py
 
-Main Flask application.
+Flask application.
 """
 
 from flask import Flask
 
 from src.web.routes.home import home_bp
 from src.web.routes.execution import execution_bp
-from src.web.routes.chatbot_logs import chatbot_logs_bp
+from src.web.routes.evidence import evidence_bp
 
 
-app = Flask(__name__)
+app = Flask(
 
-app.register_blueprint(home_bp)
+    __name__,
 
-app.register_blueprint(execution_bp)
+    template_folder="templates",
 
-app.register_blueprint(chatbot_logs_bp)
+    static_folder="static"
 
+)
+
+
+# --------------------------------------------------
+# Blueprints
+# --------------------------------------------------
+
+app.register_blueprint(
+
+    home_bp
+
+)
+
+app.register_blueprint(
+
+    execution_bp
+
+)
+
+app.register_blueprint(
+
+    evidence_bp
+
+)
+
+
+# --------------------------------------------------
+# Run
+# --------------------------------------------------
 
 if __name__ == "__main__":
 

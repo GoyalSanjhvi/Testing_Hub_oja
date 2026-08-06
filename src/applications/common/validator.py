@@ -1,15 +1,27 @@
 """
 validator.py
 
-Reusable UI validator.
+Reusable validator.
 """
+
+from src.framework.evidence import Evidence
 
 
 class Validator:
 
-    def __init__(self, page):
+    def __init__(
+
+        self,
+
+        page,
+
+        module
+
+    ):
 
         self.page = page
+
+        self.module = module
 
     # --------------------------------------------------
     # Verify Texts
@@ -33,13 +45,15 @@ class Validator:
 
         for text in texts:
 
-            self.page.get_by_text(
+            locator = self.page.get_by_text(
 
                 text,
 
                 exact=exact
 
-            ).first.wait_for(
+            ).first
+
+            locator.wait_for(
 
                 state="visible",
 
@@ -49,10 +63,22 @@ class Validator:
 
             print(f"✓ {text}")
 
+        Evidence.step(
+
+            page=self.page,
+
+            module=self.module,
+
+            title=title,
+
+            status="PASS"
+
+        )
+
         return True
 
     # --------------------------------------------------
-    # Verify Locator Exists
+    # Verify Locator
     # --------------------------------------------------
 
     def verify_locator(
@@ -61,13 +87,11 @@ class Validator:
 
         locator,
 
-        title="Locator",
+        title,
 
         timeout=10000
 
     ):
-
-        print(f"\nVerifying {title}...")
 
         locator.wait_for(
 
@@ -77,118 +101,16 @@ class Validator:
 
         )
 
-        print(f"✓ {title}")
+        Evidence.step(
+
+            page=self.page,
+
+            module=self.module,
+
+            title=title,
+
+            status="PASS"
+
+        )
 
         return True
-
-    # --------------------------------------------------
-    # Verify Page Title
-    # --------------------------------------------------
-
-    def verify_title(
-
-        self,
-
-        locators
-
-    ):
-
-        for selector in locators:
-
-            try:
-
-                element = self.page.locator(
-
-                    selector
-
-                )
-
-                if element.count() == 0:
-
-                    continue
-
-                text = element.first.inner_text().strip()
-
-                if text:
-
-                    print(f"✓ Title : {text}")
-
-                    return True
-
-            except Exception:
-
-                continue
-
-        print("✗ Title not found.")
-
-        return False
-
-    # --------------------------------------------------
-    # Verify Body
-    # --------------------------------------------------
-
-    def verify_body(
-
-        self,
-
-        locators
-
-    ):
-
-        for selector in locators:
-
-            try:
-
-                body = self.page.locator(
-
-                    selector
-
-                )
-
-                if body.count() > 0:
-
-                    print("✓ Body Found")
-
-                    return True
-
-            except Exception:
-
-                continue
-
-        print("✗ Body not found.")
-
-        return False
-
-    # --------------------------------------------------
-    # Verify Empty State
-    # --------------------------------------------------
-
-    def verify_empty_state(
-
-        self,
-
-        locators
-
-    ):
-
-        for selector in locators:
-
-            try:
-
-                empty = self.page.locator(
-
-                    selector
-
-                )
-
-                if empty.count() > 0:
-
-                    print("✓ Empty State")
-
-                    return True
-
-            except Exception:
-
-                continue
-
-        return False

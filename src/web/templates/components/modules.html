@@ -6,7 +6,7 @@
 
     </h2>
 
-    <table id="module-table">
+    <table>
 
         <thead>
 
@@ -16,15 +16,91 @@
 
                 <th>Status</th>
 
-                <th>Time</th>
+                <th>Duration</th>
 
-                <th>Action</th>
+                <th>Logs</th>
+
+                <th>Evidence</th>
+
+                <th>Run</th>
 
             </tr>
 
         </thead>
 
-        <tbody id="module-body">
+        <tbody>
+
+            {% for module in modules %}
+
+            <tr class="module-row">
+
+                <td>
+
+                    {{ module }}
+
+                </td>
+
+                <td>
+
+                    <span class="status waiting">
+
+                        WAITING
+
+                    </span>
+
+                </td>
+
+                <td class="duration">
+
+                    --
+
+                </td>
+
+                <td>
+
+                    <button
+
+                        class="logs-btn"
+
+                        data-module="{{ module }}">
+
+                        📋
+
+                    </button>
+
+                </td>
+
+                <td>
+
+                    <button
+
+                        class="evidence-btn"
+
+                        data-module="{{ module }}">
+
+                        📷
+
+                    </button>
+
+                </td>
+
+                <td>
+
+                    <button
+
+                        class="run-btn"
+
+                        data-module="{{ module }}">
+
+                        ▶ Run
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
 
         </tbody>
 
@@ -32,102 +108,92 @@
 
 </div>
 
-<script>
 
-function buildModules() {
+<!-- --------------------------------------- -->
+<!-- Logs Modal -->
+<!-- --------------------------------------- -->
 
-    const application = document.getElementById(
+<div
 
-        "application"
+    id="logs-modal"
 
-    ).value;
+    class="modal"
 
-    const body = document.getElementById(
+    style="display:none;"
 
-        "module-body"
+>
 
-    );
+    <div class="modal-content">
 
-    body.innerHTML = "";
+        <span
 
-    const modules = APPLICATIONS[
+            id="close-logs"
 
-        application
+            class="close"
 
-    ].modules;
+        >
 
-    modules.forEach(module => {
+            &times;
 
-        body.innerHTML += `
+        </span>
 
-        <tr class="module-row">
+        <h2>
 
-            <td>${module}</td>
+            Execution Log
 
-            <td>
+        </h2>
 
-                <div class="status waiting">
+        <pre id="logs-content">
 
-                    WAITING
+Loading...
 
-                </div>
+        </pre>
 
-            </td>
+    </div>
 
-            <td class="duration">
+</div>
 
-                --
 
-            </td>
+<!-- --------------------------------------- -->
+<!-- Evidence Modal -->
+<!-- --------------------------------------- -->
 
-            <td>
+<div
 
-                <button
+    id="evidence-modal"
 
-                    class="run-btn"
+    class="modal"
 
-                    data-module="${module}">
+    style="display:none;"
 
-                    ▶ Run
+>
 
-                </button>
+    <div class="modal-content">
 
-            </td>
+        <span
 
-        </tr>
+            id="close-evidence"
 
-        `;
+            class="close"
 
-    });
+        >
 
-}
+            &times;
 
-document.addEventListener(
+        </span>
 
-    "DOMContentLoaded",
+        <h2>
 
-    () => {
+            Evidence
 
-        buildModules();
+        </h2>
 
-    }
+        <div id="evidence-content">
 
-);
+            Loading...
 
-document.getElementById(
+        </div>
 
-    "application"
+    </div>
 
-).addEventListener(
-
-    "change",
-
-    () => {
-
-        buildModules();
-
-    }
-
-);
-
-</script>
+</div>

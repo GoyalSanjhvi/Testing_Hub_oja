@@ -57,7 +57,8 @@ class Dashboard(BaseNavigation):
 
             validator = Validator(
 
-                self.page
+                self.page,
+                module="Dashboard"
 
             )
 

@@ -9,11 +9,13 @@ from src.applications.common.login import Login
 
 class BaseNavigation:
 
+    APPLICATION = "oja"
+
+    ACCOUNT = "patient"
+
     TAB_NAME = ""
 
     URL_KEYWORD = None
-
-    ACCOUNT = "patient"
 
     def __init__(self, page):
 
@@ -31,7 +33,9 @@ class BaseNavigation:
 
         return Login(
 
-            self.page,
+            page=self.page,
+
+            application=self.APPLICATION,
 
             account=account
 
@@ -74,7 +78,7 @@ class BaseNavigation:
         )
 
     # --------------------------------------------------
-    # Verify Page
+    # Verify
     # --------------------------------------------------
 
     def verify(self):
@@ -93,7 +97,11 @@ class BaseNavigation:
 
             )
 
-            if tab.get_attribute("aria-current") == "page":
+            if tab.get_attribute(
+
+                "aria-current"
+
+            ) == "page":
 
                 return True
 
@@ -109,11 +117,7 @@ class BaseNavigation:
 
                 )
 
-            if keyword in self.page.url.lower():
-
-                return True
-
-            return False
+            return keyword in self.page.url.lower()
 
         except Exception as e:
 

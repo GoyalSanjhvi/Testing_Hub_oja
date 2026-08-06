@@ -12,32 +12,9 @@ import {
     initializeExecution
 } from "./execution.js";
 
-
-function updateApplicationUI() {
-
-    const application = document.getElementById("application").value;
-
-    const logsButton = document.getElementById("chatbot-logs");
-
-    if (!logsButton) {
-
-        return;
-
-    }
-
-    if (application === "oja") {
-
-        logsButton.style.display = "inline-block";
-
-    }
-
-    else {
-
-        logsButton.style.display = "none";
-
-    }
-
-}
+import {
+    initializeEvidence
+} from "./evidence.js";
 
 
 window.addEventListener(
@@ -46,61 +23,23 @@ window.addEventListener(
 
     () => {
 
+        // ------------------------------------------
+        // Report Button
+        // ------------------------------------------
+
         initializeReportButton();
+
+        // ------------------------------------------
+        // Execution
+        // ------------------------------------------
 
         initializeExecution();
 
-        // -----------------------------
-        // Chatbot Logs Button
-        // -----------------------------
+        // ------------------------------------------
+        // Logs & Evidence
+        // ------------------------------------------
 
-        const logsButton = document.getElementById(
-
-            "chatbot-logs"
-
-        );
-
-        if (logsButton) {
-
-            logsButton.addEventListener(
-
-                "click",
-
-                () => {
-
-                    window.location.href =
-
-                        "/chatbot-logs";
-
-                }
-
-            );
-
-        }
-
-        // -----------------------------
-        // Application Change
-        // -----------------------------
-
-        const application = document.getElementById(
-
-            "application"
-
-        );
-
-        if (application) {
-
-            application.addEventListener(
-
-                "change",
-
-                updateApplicationUI
-
-            );
-
-        }
-
-        updateApplicationUI();
+        initializeEvidence();
 
     }
 

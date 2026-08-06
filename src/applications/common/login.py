@@ -1,25 +1,42 @@
 """
 login.py
 
-Reusable login for OJA applications.
+Logs into Oja Fertility.
 """
 
 from src.applications.common.config import Config
+from src.framework.evidence import Evidence
 
 
 class Login:
 
     def __init__(
+
         self,
+
         page,
+
+        application="oja",
+
         account="patient"
+
     ):
 
         self.page = page
 
-        self.account = Config.get_account(
+        self.application = application
+
+        self.account = account
+
+        credentials = Config.get_account(
+
             account
+
         )
+
+        self.email = credentials["email"]
+
+        self.password = credentials["password"]
 
     # --------------------------------------------------
     # Open Login Page
@@ -38,116 +55,66 @@ class Login:
         )
 
         self.page.wait_for_load_state(
+
             "networkidle"
+
+        )
+
+        Evidence.step(
+
+            page=self.page,
+
+            application=self.application,
+
+            module="Login",
+
+            title="Login Page Opened"
+
         )
 
     # --------------------------------------------------
-    # Email Textbox
-    # --------------------------------------------------
-
-    def email_box(self):
-
-        locators = [
-
-            self.page.get_by_role(
-                "textbox",
-                name="you@example.com or 98765"
-            ),
-
-            self.page.get_by_placeholder(
-                "you@example.com or 98765 43210"
-            ),
-
-            self.page.locator(
-                "input[type='email']"
-            ),
-
-            self.page.locator(
-                "input"
-            ).first
-
-        ]
-
-        for locator in locators:
-
-            try:
-
-                locator.first.wait_for(
-                    state="visible",
-                    timeout=3000
-                )
-
-                return locator.first
-
-            except Exception:
-
-                pass
-
-        raise Exception(
-            "Email textbox not found."
-        )
-
-    # --------------------------------------------------
-    # Password Textbox
-    # --------------------------------------------------
-
-    def password_box(self):
-
-        locators = [
-
-            self.page.get_by_role(
-                "textbox",
-                name="Enter your password"
-            ),
-
-            self.page.get_by_placeholder(
-                "Enter your password"
-            ),
-
-            self.page.locator(
-                "input[type='password']"
-            )
-
-        ]
-
-        for locator in locators:
-
-            try:
-
-                locator.first.wait_for(
-                    state="visible",
-                    timeout=3000
-                )
-
-                return locator.first
-
-            except Exception:
-
-                pass
-
-        raise Exception(
-            "Password textbox not found."
-        )
-
-    # --------------------------------------------------
-    # Enter Email
+    # Email
     # --------------------------------------------------
 
     def enter_email(self):
 
         print("\nEntering Email...")
 
-        box = self.email_box()
+        email = self.page.get_by_role(
 
-        box.fill("")
+            "textbox",
 
-        box.fill(
+            name="you@example.com or 98765"
 
-            self.account["email"]
+        )
+
+        email.wait_for(
+
+            state="visible",
+
+            timeout=15000
+
+        )
+
+        email.fill(
+
+            self.email
 
         )
 
         print("Email Entered.")
+
+        Evidence.step(
+
+            page=self.page,
+
+            application=self.application,
+
+            module="Login",
+
+            title="Email Entered"
+
+        )
 
     # --------------------------------------------------
     # Continue
@@ -157,65 +124,87 @@ class Login:
 
         print("Clicking Enter...")
 
-        buttons = [
+        button = self.page.get_by_role(
 
-            self.page.get_by_role(
-                "button",
-                name="Enter"
-            ),
+            "button",
 
-            self.page.locator(
-                "button:has-text('Enter')"
-            )
+            name="Enter"
 
-        ]
+        )
 
-        for button in buttons:
+        button.wait_for(
 
-            try:
+            state="visible",
 
-                button.first.wait_for(
-                    state="visible",
-                    timeout=3000
-                )
+            timeout=15000
 
-                button.first.click()
+        )
 
-                print("Enter Clicked.")
+        button.click()
 
-                return
+        self.page.wait_for_load_state(
 
-            except Exception:
+            "networkidle"
 
-                pass
+        )
 
-        raise Exception(
-            "Enter button not found."
+        print("Enter Clicked.")
+
+        Evidence.step(
+
+            page=self.page,
+
+            application=self.application,
+
+            module="Login",
+
+            title="Password Screen Opened"
+
         )
 
     # --------------------------------------------------
-    # Enter Password
+    # Password
     # --------------------------------------------------
 
     def enter_password(self):
 
         print("Waiting for Password Screen...")
 
-        self.page.wait_for_load_state(
-            "networkidle"
+        password = self.page.get_by_role(
+
+            "textbox",
+
+            name="Enter your password"
+
         )
 
-        box = self.password_box()
+        password.wait_for(
 
-        box.fill("")
+            state="visible",
 
-        box.fill(
+            timeout=15000
 
-            self.account["password"]
+        )
+
+        password.fill(
+
+            self.password
 
         )
 
         print("Password Entered.")
+
+        Evidence.step(
+
+            page=self.page,
+
+            application=self.application,
+
+            module="Login",
+
+            title="Password Entered"
+
+        )
 
     # --------------------------------------------------
     # Login
@@ -225,73 +214,85 @@ class Login:
 
         print("Clicking Login...")
 
-        buttons = [
+        button = self.page.get_by_role(
 
-            self.page.get_by_role(
-                "button",
-                name="Login"
-            ),
+            "button",
 
-            self.page.locator(
-                "button:has-text('Login')"
-            )
+            name="Login"
 
-        ]
-
-        for button in buttons:
-
-            try:
-
-                button.first.wait_for(
-                    state="visible",
-                    timeout=3000
-                )
-
-                button.first.click()
-
-                print("Login Clicked.")
-
-                return
-
-            except Exception:
-
-                pass
-
-        raise Exception(
-            "Login button not found."
         )
 
+        button.wait_for(
+
+            state="visible",
+
+            timeout=15000
+
+        )
+
+        button.click()
+
+        print("Login Clicked.")
+
     # --------------------------------------------------
-    # Verify Login
+    # Verify
     # --------------------------------------------------
 
     def verify(self):
 
         self.page.wait_for_load_state(
+
             "networkidle"
+
         )
 
         self.page.wait_for_timeout(
-            Config.WAIT_TIME
-        )
 
-        print(
-            f"Current URL : {self.page.url}"
-        )
-
-        return (
-
-            "dashboard" in self.page.url.lower()
+            2000
 
         )
+
+        success = (
+
+            "dashboard"
+
+            in
+
+            self.page.url.lower()
+
+        )
+
+        Evidence.step(
+
+            page=self.page,
+
+            application=self.application,
+
+            module="Login",
+
+            title="Dashboard Loaded" if success else "Login Failed",
+
+            status="PASS" if success else "FAIL"
+
+        )
+
+        return success
 
     # --------------------------------------------------
-    # Execute Login
+    # Execute
     # --------------------------------------------------
 
     def execute(self):
 
         try:
+
+            Evidence.clear(
+
+                self.application,
+
+                "Login"
+
+            )
 
             self.open()
 
@@ -307,8 +308,25 @@ class Login:
 
         except Exception as e:
 
-            print(
-                f"\nLogin Error : {e}"
-            )
+            print(f"Login Error : {e}")
+
+            try:
+
+                Evidence.step(
+
+                    page=self.page,
+
+                    application=self.application,
+
+                    module="Login",
+
+                    title=str(e),
+
+                    status="FAIL"
+
+                )
+
+            except Exception:
+                pass
 
             return False

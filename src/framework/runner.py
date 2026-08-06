@@ -6,6 +6,7 @@ Executes automation modules.
 
 from importlib import import_module
 from time import time
+import traceback
 
 from src.framework.models.result import Result
 from src.framework.observer.execution_observer import ExecutionObserver
@@ -75,7 +76,12 @@ class Runner:
 
         try:
 
-            status = self.modules[
+            print("=" * 80)
+            print(f"Executing Module : {module}")
+            print(f"Module Class     : {self.modules[module]}")
+            print("=" * 80)
+
+            instance = self.modules[
 
                 module
 
@@ -83,7 +89,13 @@ class Runner:
 
                 self.page
 
-            ).execute()
+            )
+
+            print("✓ Module instance created")
+
+            status = instance.execute()
+
+            print(f"✓ Execute Returned : {status}")
 
             duration = round(
 
@@ -153,6 +165,14 @@ class Runner:
 
         except Exception as e:
 
+            print("\n" + "=" * 80)
+            print("RUNNER EXCEPTION")
+            print("=" * 80)
+
+            traceback.print_exc()
+
+            print("=" * 80)
+
             duration = round(
 
                 time() - start,
@@ -169,7 +189,7 @@ class Runner:
 
                 duration=duration,
 
-                reason=e
+                reason=str(e)
 
             )
 

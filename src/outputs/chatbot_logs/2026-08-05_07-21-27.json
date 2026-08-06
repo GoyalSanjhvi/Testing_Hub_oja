@@ -1,0 +1,28 @@
+{
+    "module": "Ask Oja (Floating)",
+    "status": "PASS",
+    "execution_time": "2026-08-05 07:21:27",
+    "duration": 15.23,
+    "questions": [
+        {
+            "id": 927,
+            "category": "Digital Fertility Care & OJA Smart Journey",
+            "category_key": "digital_fertility_care_and_oja_smart_journey",
+            "priority": "Regression",
+            "question": "Can AI answer fertility questions reliably?",
+            "response": "That's a thoughtful question, but it's outside women's health itself—it's about how AI works rather than fertility or health information.\n\nWhat I can tell you is this: **I'm designed to answer fertility questions *only* from Oja's vetted medical content, not from general knowledge or guessing.** If Oja doesn't have material on something, I say so rather than fill the gap myself. That's meant to make answers more reliable within my scope.\n\nFor your own fertility care, though, the most reliable source is always a qualified doctor who knows your personal situation, test results, and history. AI can help you understand general concepts and prepare better questions for your doctor—but it can't replace that relationship.\n\nIs there a specific fertility topic I can help you explore using Oja's material?",
+            "duration": 0,
+            "status": "PASS"
+        },
+        {
+            "id": 882,
+            "category": "Embryology Lab & Laboratory Procedures",
+            "category_key": "embryology_lab_and_laboratory_procedures",
+            "priority": "Regression",
+            "question": "What happens to my eggs immediately after retrieval?",
+            "response": "According to Oja's content on IVF, immediately after egg retrieval the sperm is prepared on the same day. The eggs and sperm are then brought together in the laboratory—that's the \"in vitro\" part, where fertilization happens outside your body.\n\nThe content doesn't go into detail about what happens to the eggs in those first moments after collection, so I can't say more than that. Your clinic can walk you through their specific lab process and timing, which varies slightly between centers.",
+            "duration": 0,
+            "status": "PASS"
+        }
+    ]
+}
