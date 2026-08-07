@@ -1,0 +1,153 @@
+/*
+=========================================================
+TOOLBAR
+=========================================================
+*/
+
+.toolbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#ffffff;
+
+    border:1px solid #E5E7EB;
+
+    border-radius:14px;
+
+    padding:18px 28px;
+
+    margin-bottom:24px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+
+}
+
+.toolbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.toolbar label{
+
+    font-size:17px;
+
+    font-weight:600;
+
+    color:#111827;
+
+}
+
+/* ==========================================
+Application Dropdown
+========================================== */
+
+.application-select{
+
+    min-width:260px;
+
+    height:46px;
+
+    padding:0 42px 0 18px;
+
+    border:1px solid #D1D5DB;
+
+    border-radius:10px;
+
+    background:#ffffff;
+
+    color:#111827;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    outline:none;
+
+    transition:.25s;
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    -moz-appearance:none;
+
+}
+
+.application-select:hover{
+
+    border-color:#2563EB;
+
+}
+
+.application-select:focus{
+
+    border-color:#2563EB;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+/* ==========================================
+Dropdown Arrow
+========================================== */
+
+.toolbar-left{
+
+    position:relative;
+
+}
+
+.toolbar-left::after{
+
+    content:"▼";
+
+    position:absolute;
+
+    right:16px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:11px;
+
+    color:#6B7280;
+
+    pointer-events:none;
+
+}
+
+/* ==========================================
+Responsive
+========================================== */
+
+@media(max-width:900px){
+
+    .toolbar{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:16px;
+
+    }
+
+    .application-select{
+
+        width:100%;
+
+    }
+
+}

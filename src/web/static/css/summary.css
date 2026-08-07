@@ -1,0 +1,167 @@
+/*
+=========================================================
+Summary
+=========================================================
+*/
+
+.summary-panel{
+
+    background:#ffffff;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    margin-top:30px;
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+
+}
+
+/* ==========================================
+Title
+========================================== */
+
+.summary-header{
+
+    background:#F8FAFC;
+
+    padding:20px 28px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.summary-header h2{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+/* ==========================================
+Body
+========================================== */
+
+.summary-content{
+
+    display:grid;
+
+    grid-template-columns:repeat(6,1fr);
+
+    gap:20px;
+
+    padding:30px;
+
+}
+
+/* ==========================================
+Card
+========================================== */
+
+.summary-card{
+
+    background:#ffffff;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    padding:24px;
+
+    text-align:center;
+
+    transition:.25s;
+
+}
+
+.summary-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 14px 28px rgba(0,0,0,.08);
+
+}
+
+.summary-label{
+
+    display:block;
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+    margin-bottom:12px;
+
+    font-weight:600;
+
+    text-transform:uppercase;
+
+}
+
+.summary-value{
+
+    font-size:32px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+/* ==========================================
+Colours
+========================================== */
+
+.summary-pass{
+
+    border-top:5px solid #16A34A;
+
+}
+
+.summary-fail{
+
+    border-top:5px solid #DC2626;
+
+}
+
+.summary-waiting{
+
+    border-top:5px solid #F59E0B;
+
+}
+
+.summary-total{
+
+    border-top:5px solid #2563EB;
+
+}
+
+.summary-time{
+
+    border-top:5px solid #7C3AED;
+
+}
+
+.summary-date{
+
+    border-top:5px solid #0EA5E9;
+
+}
+
+.summary-date .summary-value{
+
+    font-size:17px;
+
+}
+
+.summary-time .summary-value{
+
+    font-size:24px;
+
+}

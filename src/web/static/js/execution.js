@@ -1,91 +1,75 @@
 /*
+=========================================================
 execution.js
 
-Handles module execution.
+Handles Test Execution
+=========================================================
 */
 
-import {
-    getMode
-} from "./ui.js";
-
-import {
-    updateSummary
-} from "./summary.js";
-
+import { getMode } from "./ui.js";
+import { updateSummary } from "./summary.js";
 
 function getApplication() {
 
-    return document.getElementById(
-
-        "application"
-
-    ).value;
+    return document
+        .getElementById("application")
+        .value;
 
 }
-
 
 async function executeModule(row) {
 
     const button = row.querySelector(".run-btn");
-
     const status = row.querySelector(".status");
-
     const duration = row.querySelector(".duration");
 
     button.disabled = true;
+    button.textContent = "⏳ Running";
 
-    status.innerText = "RUNNING";
-
+    status.textContent = "RUNNING";
     status.className = "status running";
 
-    duration.innerText = "--";
+    duration.textContent = "--";
 
     try {
 
-        const response = await fetch(
+        const response = await fetch("/run", {
 
-            "/run",
+            method: "POST",
 
-            {
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-                method: "POST",
+            body: JSON.stringify({
 
-                headers: {
+                application: getApplication(),
 
-                    "Content-Type": "application/json"
+                module: button.dataset.module,
 
-                },
+                mode: getMode()
 
-                body: JSON.stringify({
+            })
 
-                    application: getApplication(),
-
-                    module: button.dataset.module,
-
-                    mode: getMode()
-
-                })
-
-            }
-
-        );
+        });
 
         const result = await response.json();
 
-        duration.innerText = result.duration + " s";
+        console.log(result);
+
+        duration.textContent =
+            `${result.duration} s`;
 
         if (result.status === "PASS") {
 
-            status.innerText = "PASS";
-
+            status.textContent = "PASS";
             status.className = "status pass";
 
         }
 
         else {
 
-            status.innerText = "FAIL";
-
+            status.textContent = "FAIL";
             status.className = "status fail";
 
         }
@@ -96,8 +80,7 @@ async function executeModule(row) {
 
         console.error(error);
 
-        status.innerText = "FAIL";
-
+        status.textContent = "FAIL";
         status.className = "status fail";
 
     }
@@ -105,8 +88,7 @@ async function executeModule(row) {
     finally {
 
         button.disabled = false;
-
-        button.innerText = "▶ Run";
+        button.textContent = "▶ Execute";
 
         updateSummary();
 
@@ -114,90 +96,51 @@ async function executeModule(row) {
 
 }
 
-
 export function initializeExecution() {
-
-    // -------------------------------------------------
-    // Event Delegation
-    // -------------------------------------------------
 
     document.addEventListener(
 
         "click",
 
-        async event => {
+        async (event) => {
 
-            const button = event.target.closest(
+            const button = event.target.closest(".run-btn");
 
-                ".run-btn"
-
-            );
-
-            if (!button) {
-
+            if (!button)
                 return;
 
-            }
+            const row = button.closest(".module-row");
 
-            const row = button.closest(
-
-                ".module-row"
-
-            );
-
-            await executeModule(
-
-                row
-
-            );
+            await executeModule(row);
 
         }
 
     );
 
-    // -------------------------------------------------
-    // Run All
-    // -------------------------------------------------
+    const runAll = document.getElementById("run-all");
 
-    document.getElementById(
+    if (!runAll)
+        return;
 
-        "run-all"
-
-    ).addEventListener(
+    runAll.addEventListener(
 
         "click",
 
         async () => {
 
-            const runAll = document.getElementById(
-
-                "run-all"
-
-            );
+            const rows = document.querySelectorAll(".module-row");
 
             runAll.disabled = true;
 
-            runAll.innerText = "Running...";
-
-            const rows = document.querySelectorAll(
-
-                ".module-row"
-
-            );
-
             for (const row of rows) {
 
-                await executeModule(
-
-                    row
-
-                );
+                await executeModule(row);
 
             }
 
             runAll.disabled = false;
 
-            runAll.innerText = "🚀 Run All Tests";
+            runAll.textContent = "🚀 Run All Tests";
 
         }
 

@@ -1,51 +1,149 @@
-<div class="summary">
+<section class="summary-panel">
 
-    <div class="summary-card">
+    <div class="summary-header">
 
-        <h3>Total</h3>
+        <h2>
 
-        <p id="total">
+            Summary
 
-            {{ modules|length }}
-
-        </p>
+        </h2>
 
     </div>
 
-    <div class="summary-card">
+    <div class="summary-content">
 
-        <h3>Passed</h3>
+        <div class="summary-card summary-pass">
 
-        <p id="passed">
+            <span class="summary-label">
 
-            0
+                🟢 PASS
 
-        </p>
+            </span>
+
+            <span
+
+                class="summary-value"
+
+                id="pass-count"
+
+            >
+
+                0
+
+            </span>
+
+        </div>
+
+        <div class="summary-card summary-fail">
+
+            <span class="summary-label">
+
+                🔴 FAIL
+
+            </span>
+
+            <span
+
+                class="summary-value"
+
+                id="fail-count"
+
+            >
+
+                0
+
+            </span>
+
+        </div>
+
+        <div class="summary-card summary-waiting">
+
+            <span class="summary-label">
+
+                ⚪ WAITING
+
+            </span>
+
+            <span
+
+                class="summary-value"
+
+                id="waiting-count"
+
+            >
+
+                0
+
+            </span>
+
+        </div>
+
+        <div class="summary-card summary-total">
+
+            <span class="summary-label">
+
+                📦 TOTAL
+
+            </span>
+
+            <span
+
+                class="summary-value"
+
+                id="total-count"
+
+            >
+
+                0
+
+            </span>
+
+        </div>
+
+        <div class="summary-card summary-time">
+
+            <span class="summary-label">
+
+                ⏱ TOTAL TIME
+
+            </span>
+
+            <span
+
+                class="summary-value"
+
+                id="execution-time"
+
+            >
+
+                --
+
+            </span>
+
+        </div>
+
+        <div class="summary-card summary-date">
+
+            <span class="summary-label">
+
+                🕒 LAST EXECUTION
+
+            </span>
+
+            <span
+
+                class="summary-value"
+
+                id="last-run"
+
+            >
+
+                --
+
+            </span>
+
+        </div>
 
     </div>
 
-    <div class="summary-card">
-
-        <h3>Failed</h3>
-
-        <p id="failed">
-
-            0
-
-        </p>
-
-    </div>
-
-    <div class="summary-card">
-
-        <h3>Time</h3>
-
-        <p id="time">
-
-            --
-
-        </p>
-
-    </div>
-
-</div>
+</section>

@@ -1,12 +1,6 @@
-<div class="card">
+<section class="modules-panel">
 
-    <h2>
-
-        Modules
-
-    </h2>
-
-    <table>
+    <table class="modules-table">
 
         <thead>
 
@@ -34,9 +28,19 @@
 
             <tr class="module-row">
 
-                <td>
+                <td class="module-name">
 
-                    {{ module }}
+                    <span class="module-icon">
+
+                        📄
+
+                    </span>
+
+                    <span class="module-title">
+
+                        {{ module }}
+
+                    </span>
 
                 </td>
 
@@ -59,12 +63,10 @@
                 <td>
 
                     <button
-
                         class="logs-btn"
-
                         data-module="{{ module }}">
 
-                        📋
+                        📋 Logs
 
                     </button>
 
@@ -73,12 +75,10 @@
                 <td>
 
                     <button
-
                         class="evidence-btn"
-
                         data-module="{{ module }}">
 
-                        📷
+                        📷 Evidence
 
                     </button>
 
@@ -87,12 +87,10 @@
                 <td>
 
                     <button
-
                         class="run-btn"
-
                         data-module="{{ module }}">
 
-                        ▶ Run
+                        ▶ Execute
 
                     </button>
 
@@ -106,94 +104,16 @@
 
     </table>
 
-</div>
+</section>
 
+<div class="run-all-container">
 
-<!-- --------------------------------------- -->
-<!-- Logs Modal -->
-<!-- --------------------------------------- -->
+    <button
+        id="run-all"
+        class="run-all-btn">
 
-<div
+        🚀 Run All Tests
 
-    id="logs-modal"
-
-    class="modal"
-
-    style="display:none;"
-
->
-
-    <div class="modal-content">
-
-        <span
-
-            id="close-logs"
-
-            class="close"
-
-        >
-
-            &times;
-
-        </span>
-
-        <h2>
-
-            Execution Log
-
-        </h2>
-
-        <pre id="logs-content">
-
-Loading...
-
-        </pre>
-
-    </div>
-
-</div>
-
-
-<!-- --------------------------------------- -->
-<!-- Evidence Modal -->
-<!-- --------------------------------------- -->
-
-<div
-
-    id="evidence-modal"
-
-    class="modal"
-
-    style="display:none;"
-
->
-
-    <div class="modal-content">
-
-        <span
-
-            id="close-evidence"
-
-            class="close"
-
-        >
-
-            &times;
-
-        </span>
-
-        <h2>
-
-            Evidence
-
-        </h2>
-
-        <div id="evidence-content">
-
-            Loading...
-
-        </div>
-
-    </div>
+    </button>
 
 </div>

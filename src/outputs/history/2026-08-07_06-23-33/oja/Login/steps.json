@@ -5,7 +5,7 @@
         "step": 1,
         "title": "Login Page Opened",
         "status": "PASS",
-        "timestamp": "06:23:36",
+        "timestamp": "06:18:50",
         "screenshot": "01_Login_Page_Opened.png",
         "html": "01_Login_Page_Opened.html"
     },
@@ -15,7 +15,7 @@
         "step": 2,
         "title": "Email Entered",
         "status": "PASS",
-        "timestamp": "06:23:37",
+        "timestamp": "06:18:51",
         "screenshot": "02_Email_Entered.png",
         "html": "02_Email_Entered.html"
     },
@@ -25,7 +25,7 @@
         "step": 3,
         "title": "Password Screen Opened",
         "status": "PASS",
-        "timestamp": "06:23:37",
+        "timestamp": "06:18:51",
         "screenshot": "03_Password_Screen_Opened.png",
         "html": "03_Password_Screen_Opened.html"
     },
@@ -35,7 +35,7 @@
         "step": 4,
         "title": "Password Entered",
         "status": "PASS",
-        "timestamp": "06:23:38",
+        "timestamp": "06:18:52",
         "screenshot": "04_Password_Entered.png",
         "html": "04_Password_Entered.html"
     },
@@ -43,10 +43,10 @@
         "application": "oja",
         "module": "Login",
         "step": 5,
-        "title": "Login Failed",
-        "status": "FAIL",
-        "timestamp": "06:23:41",
-        "screenshot": "05_Login_Failed.png",
-        "html": "05_Login_Failed.html"
+        "title": "Dashboard Loaded",
+        "status": "PASS",
+        "timestamp": "06:18:55",
+        "screenshot": "05_Dashboard_Loaded.png",
+        "html": "05_Dashboard_Loaded.html"
     }
 ]

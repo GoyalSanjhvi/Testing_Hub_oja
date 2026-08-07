@@ -1,35 +1,73 @@
 /*
+=========================================================
 ui.js
 
-UI helper functions.
+UI Helper Functions
+=========================================================
 */
+
+let currentMode = "VISUAL";
+
+/* ==========================================
+Get Current Mode
+========================================== */
 
 export function getMode() {
 
-    return document.querySelector(
-        'input[name="mode"]:checked'
-    ).value;
+    return currentMode;
 
 }
 
+/* ==========================================
+Set Mode
+========================================== */
+
+export function setMode(mode) {
+
+    currentMode = mode;
+
+}
+
+/* ==========================================
+Initialize Mode Dropdown
+========================================== */
 
 export function initializeReportButton() {
 
-    const reportButton = document.getElementById("report");
+    const button = document.getElementById(
+        "mode-button"
+    );
 
-    document
-        .querySelectorAll('input[name="mode"]')
-        .forEach(radio => {
+    const menu = document.getElementById(
+        "mode-menu"
+    );
 
-            radio.addEventListener("change", () => {
+    const text = button.querySelector(
+        ".mode-text"
+    );
 
-                reportButton.style.display =
-                    getMode() === "regression"
-                        ? "inline-block"
-                        : "none";
+    document.querySelectorAll(
+        ".mode-item"
+    ).forEach(item => {
 
-            });
+        item.addEventListener(
+            "click",
+            () => {
 
-        });
+                currentMode = item.dataset.mode;
+
+                text.textContent =
+                    currentMode === "VISUAL"
+                        ? "Visual"
+                        : "Regression";
+
+                menu.classList.remove(
+                    "show"
+                );
+
+            }
+        );
+
+    });
 
 }

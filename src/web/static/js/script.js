@@ -1,20 +1,46 @@
 /*
+=========================================================
 script.js
 
-Entry Point.
+Application Entry Point
+=========================================================
 */
 
 import {
-    initializeReportButton
-} from "./ui.js";
 
-import {
     initializeExecution
+
 } from "./execution.js";
 
 import {
+
     initializeEvidence
+
 } from "./evidence.js";
+
+import {
+
+    initializeMode
+
+} from "./mode.js";
+
+import {
+
+    initializeSettings
+
+} from "./settings.js";
+
+import {
+
+    updateSummary
+
+} from "./summary.js";
+
+import {
+
+    Modal
+
+} from "./modal.js";
 
 
 window.addEventListener(
@@ -23,23 +49,45 @@ window.addEventListener(
 
     () => {
 
-        // ------------------------------------------
-        // Report Button
-        // ------------------------------------------
+        console.clear();
 
-        initializeReportButton();
+        console.log(
 
-        // ------------------------------------------
-        // Execution
-        // ------------------------------------------
+            "🧪 OJA Automation Framework"
+
+        );
+
+        console.log(
+
+            "Initializing Dashboard..."
+
+        );
+
+        // ----------------------------------
+        // Initialize UI
+        // ----------------------------------
+
+        Modal.initialize();
+
+        initializeMode();
+
+        initializeSettings();
+
+        initializeEvidence();
 
         initializeExecution();
 
-        // ------------------------------------------
-        // Logs & Evidence
-        // ------------------------------------------
+        // ----------------------------------
+        // Summary
+        // ----------------------------------
 
-        initializeEvidence();
+        updateSummary();
+
+        console.log(
+
+            "Dashboard Ready."
+
+        );
 
     }
 

@@ -1,372 +1,281 @@
+/*
+=========================================================
+OJA Automation Framework
+Global Styles
+=========================================================
+*/
+
+:root{
+
+    --primary:#2563EB;
+    --primary-hover:#1D4ED8;
+
+    --success:#16A34A;
+    --danger:#DC2626;
+    --warning:#F59E0B;
+
+    --background:#F5F7FB;
+
+    --card:#FFFFFF;
+
+    --border:#E5E7EB;
+
+    --text:#111827;
+
+    --text-light:#6B7280;
+
+    --shadow:0 10px 30px rgba(0,0,0,.08);
+
+    --radius:14px;
+
+    --transition:.25s ease;
+
+}
+
+/* =======================================================
+Reset
+======================================================= */
+
 *{
+
     margin:0;
+
     padding:0;
+
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
 }
 
 body{
 
-    background:#f4f6f9;
+    font-family:'Inter',sans-serif;
 
-    color:#333;
+    background:var(--background);
 
-    padding:40px;
-
-}
-
-.container{
-
-    max-width:1200px;
-
-    margin:auto;
+    color:var(--text);
 
 }
 
-header{
+/* =======================================================
+Background
+======================================================= */
 
-    margin-bottom:30px;
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #f8fbff,
+
+            #eef3ff
+
+        );
+
+    z-index:-1;
 
 }
 
-header h1{
+/* =======================================================
+Main Container
+======================================================= */
 
-    color:#ff6b00;
+.app{
 
-    font-size:34px;
+    width:min(1500px,95%);
 
-    font-weight:bold;
+    margin:40px auto;
 
 }
+
+/* =======================================================
+Generic Card
+======================================================= */
 
 .card{
 
-    background:white;
+    background:var(--card);
 
-    border-radius:12px;
+    border-radius:var(--radius);
 
-    padding:25px;
+    padding:24px;
+
+    box-shadow:var(--shadow);
 
     margin-bottom:25px;
 
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    border:1px solid var(--border);
 
 }
 
-.card h2{
+/* =======================================================
+Titles
+======================================================= */
 
-    margin-bottom:20px;
+h1{
 
-}
+    font-size:30px;
 
-.mode{
-
-    display:flex;
-
-    gap:40px;
-
-    font-size:18px;
+    font-weight:700;
 
 }
 
-.mode input{
+h2{
 
-    margin-right:8px;
-
-}
-
-table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-}
-
-th{
-
-    background:#ff6b00;
-
-    color:white;
-
-    padding:15px;
-
-    text-align:center;
-
-}
-
-td{
-
-    padding:15px;
-
-    border-bottom:1px solid #ddd;
-
-    text-align:center;
-
-}
-
-.module-row:hover{
-
-    background:#fafafa;
-
-}
-
-.status{
-
-    width:100%;
-
-    padding:10px;
-
-    border-radius:6px;
-
-    color:white;
-
-    font-weight:bold;
-
-}
-
-.waiting{
-
-    background:#f0ad4e;
-
-}
-
-.running{
-
-    background:#2196f3;
-
-    animation:pulse 1s infinite;
-
-}
-
-.pass{
-
-    background:#28a745;
-
-}
-
-.fail{
-
-    background:#dc3545;
-
-}
-
-@keyframes pulse{
-
-    0%{
-
-        opacity:1;
-
-    }
-
-    50%{
-
-        opacity:.45;
-
-    }
-
-    100%{
-
-        opacity:1;
-
-    }
-
-}
-
-button{
-
-    border:none;
-
-    cursor:pointer;
-
-    padding:10px 20px;
-
-    border-radius:6px;
-
-    font-size:15px;
-
-    transition:.3s;
-
-}
-
-.run-btn{
-
-    background:#ff6b00;
-
-    color:white;
-
-}
-
-.run-btn:hover{
-
-    background:#e65d00;
-
-}
-
-.buttons{
-
-    display:flex;
-
-    gap:20px;
-
-    margin-bottom:30px;
-
-}
-
-.primary{
-
-    background:#28a745;
-
-    color:white;
-
-}
-
-.primary:hover{
-
-    background:#208838;
-
-}
-
-.secondary{
-
-    background:#1565c0;
-
-    color:white;
-
-}
-
-.secondary:hover{
-
-    background:#0d47a1;
-
-}
-
-.summary{
-
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    gap:20px;
-
-}
-
-.summary-card{
-
-    background:white;
-
-    border-radius:10px;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
-
-    padding:25px;
-
-    text-align:center;
-
-}
-
-.summary-card h3{
-
-    color:#777;
-
-    margin-bottom:12px;
-
-}
-
-.summary-card p{
-
-    font-size:34px;
-
-    font-weight:bold;
-
-    color:#ff6b00;
-
-}
-
-@media(max-width:900px){
-
-.summary{
-
-grid-template-columns:repeat(2,1fr);
-
-}
-
-}
-
-@media(max-width:650px){
-
-.summary{
-
-grid-template-columns:1fr;
-
-}
-
-.mode{
-
-flex-direction:column;
-
-gap:15px;
-
-}
-
-.buttons{
-
-flex-direction:column;
-
-}
-
-}
-
-/* ----------------------------------
-   Application Selector
------------------------------------ */
-
-.select-wrapper{
-
-    margin-top:15px;
-
-}
-
-#application{
-
-    width:100%;
-
-    max-width:280px;
-
-    padding:12px 18px;
-
-    font-size:16px;
+    font-size:22px;
 
     font-weight:600;
 
-    color:#1f2937;
+}
 
-    background:#ffffff;
+h3{
 
-    border:2px solid #d6e4ff;
+    font-size:18px;
 
-    border-radius:12px;
+    font-weight:600;
+
+}
+
+p{
+
+    color:var(--text-light);
+
+    line-height:1.6;
+
+}
+
+/* =======================================================
+Links
+======================================================= */
+
+a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    transition:var(--transition);
+
+}
+
+a:hover{
+
+    color:var(--primary-hover);
+
+}
+
+/* =======================================================
+Inputs
+======================================================= */
+
+input,
+
+select,
+
+textarea{
+
+    font-family:inherit;
+
+}
+
+/* =======================================================
+Buttons (Base)
+======================================================= */
+
+button{
+
+    font-family:inherit;
 
     cursor:pointer;
 
-    transition:.25s;
+    transition:var(--transition);
+
+    border:none;
 
     outline:none;
 
-    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+/* =======================================================
+Utility Classes
+======================================================= */
+
+.hidden{
+
+    display:none !important;
 
 }
 
-#application:hover{
+.center{
 
-    border-color:#2563eb;
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
 
 }
 
-#application:focus{
+.flex{
 
-    border-color:#2563eb;
+    display:flex;
 
-    box-shadow:0 0 0 4px rgba(37,99,235,.15);
+}
+
+.space-between{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.text-center{
+
+    text-align:center;
+
+}
+
+/* =======================================================
+Scrollbar
+======================================================= */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#edf2f7;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
 
 }

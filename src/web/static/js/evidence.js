@@ -1,259 +1,387 @@
 /*
+=========================================================
 evidence.js
 
-Handles Logs and Evidence.
+Handles Logs & Evidence
+=========================================================
 */
+
+import { Modal } from "./modal.js";
+
+/* ==========================================
+Current Application
+========================================== */
 
 function currentApplication() {
 
     return document
-
         .getElementById(
-
             "application"
-
         )
-
         .value;
 
 }
 
-
-// --------------------------------------------------
-// Logs
-// --------------------------------------------------
+/* ==========================================
+Logs
+========================================== */
 
 async function openLogs(module) {
 
-    const application = currentApplication();
+    try {
 
-    const response = await fetch(
+        const application = currentApplication();
 
-        `/logs/${application}/${encodeURIComponent(module)}`
+        const response = await fetch(
 
-    );
+            `/logs/${application}/${encodeURIComponent(module)}`
 
-    const data = await response.json();
+        );
 
-    document.getElementById(
+        if (!response.ok) {
 
-        "logs-content"
+            throw new Error(
 
-    ).textContent =
-
-        data.logs || "No logs available.";
-
-    document.getElementById(
-
-        "logs-modal"
-
-    ).style.display = "block";
-
-}
-
-
-// --------------------------------------------------
-// Evidence
-// --------------------------------------------------
-
-async function openEvidence(module) {
-
-    const application = currentApplication();
-
-    const response = await fetch(
-
-        `/evidence/${application}/${encodeURIComponent(module)}`
-
-    );
-
-    const data = await response.json();
-
-    const container = document.getElementById(
-
-        "evidence-content"
-
-    );
-
-    container.innerHTML = "";
-
-    if (
-
-        data.steps.length === 0
-
-    ) {
-
-        container.innerHTML =
-
-            "<p>No evidence found.</p>";
-
-        document.getElementById(
-
-            "evidence-modal"
-
-        ).style.display = "block";
-
-        return;
-
-    }
-
-    data.steps.forEach(step => {
-
-        container.innerHTML += `
-
-            <div class="evidence-step">
-
-                <h3>
-
-                    Step ${step.step}
-
-                </h3>
-
-                <p>
-
-                    <strong>${step.title}</strong>
-
-                </p>
-
-                <p>
-
-                    ${step.timestamp}
-
-                </p>
-
-                <a
-
-                    href="/file/screenshot/${step.application}/${step.module}/${step.screenshot}"
-
-                    target="_blank"
-
-                >
-
-                    📷 Screenshot
-
-                </a>
-
-                <br>
-
-                <a
-
-                    href="/file/html/${step.application}/${step.module}/${step.html}"
-
-                    target="_blank"
-
-                >
-
-                    🌐 HTML
-
-                </a>
-
-            </div>
-
-            <hr>
-
-        `;
-
-    });
-
-    document.getElementById(
-
-        "evidence-modal"
-
-    ).style.display = "block";
-
-}
-
-
-// --------------------------------------------------
-// Initialize
-// --------------------------------------------------
-
-export function initializeEvidence() {
-
-    document
-
-        .querySelectorAll(
-
-            ".logs-btn"
-
-        )
-
-        .forEach(button => {
-
-            button.addEventListener(
-
-                "click",
-
-                () =>
-
-                    openLogs(
-
-                        button.dataset.module
-
-                    )
+                "Unable to load logs."
 
             );
 
-        });
+        }
 
+        const data = await response.json();
 
-    document
+        const container = document.getElementById(
 
-        .querySelectorAll(
+            "logs-content"
 
-            ".evidence-btn"
+        );
 
-        )
+        container.innerHTML = "";
 
-        .forEach(button => {
+        if (
 
-            button.addEventListener(
+            !data.logs ||
 
-                "click",
+            data.logs.trim() === ""
 
-                () =>
+        ) {
 
-                    openEvidence(
+            container.innerHTML =
 
-                        button.dataset.module
+                "<p>No execution logs found.</p>";
 
-                    )
+        }
 
-            );
+        else {
 
-        });
+            container.innerHTML = `
 
+<pre class="log-text">${data.logs}</pre>
 
-    document
+            `;
 
-        .getElementById(
+        }
 
-            "close-logs"
-
-        )
-
-        .onclick = () =>
-
-        document.getElementById(
+        Modal.open(
 
             "logs-modal"
 
-        ).style.display = "none";
+        );
 
+    }
 
-    document
+    catch (error) {
 
-        .getElementById(
-
-            "close-evidence"
-
-        )
-
-        .onclick = () =>
+        console.error(error);
 
         document.getElementById(
 
+            "logs-content"
+
+        ).innerHTML =
+
+            "<p>Unable to load execution logs.</p>";
+
+        Modal.open(
+
+            "logs-modal"
+
+        );
+
+    }
+
+}
+
+/* ==========================================
+Evidence
+========================================== */
+
+async function openEvidence(module) {
+
+    try {
+
+        const application = currentApplication();
+
+        const response = await fetch(
+
+            `/evidence/${application}/${encodeURIComponent(module)}`
+
+        );
+
+        if (!response.ok) {
+
+            throw new Error(
+
+                "Unable to load evidence."
+
+            );
+
+        }
+
+        const data = await response.json();
+
+        const container = document.getElementById(
+
+            "evidence-content"
+
+        );
+
+        container.innerHTML = "";
+
+        if (
+
+            !data.steps ||
+
+            data.steps.length === 0
+
+        ) {
+
+            container.innerHTML =
+
+                "<h3>No evidence available.</h3>";
+
+            Modal.open(
+
+                "evidence-modal"
+
+            );
+
+            return;
+
+        }
+
+        container.innerHTML =
+
+            `<div class="evidence-grid"></div>`;
+
+        const grid = container.querySelector(
+
+            ".evidence-grid"
+
+        );
+
+        data.steps.forEach(step => {
+
+            grid.innerHTML += `
+
+<div class="evidence-card">
+
+    <img
+
+        src="/file/screenshot/${application}/${module}/${step.screenshot}"
+
+        class="evidence-image"
+
+        loading="lazy"
+
+    >
+
+    <div class="evidence-content">
+
+        <div class="evidence-title">
+
+            Step ${step.step}
+
+        </div>
+
+        <div class="evidence-time">
+
+            ${step.title}
+
+        </div>
+
+        
+
+</div>
+
+            `;
+
+        });
+
+        document.querySelectorAll(
+
+            ".evidence-image"
+
+        ).forEach(image => {
+
+            image.addEventListener(
+
+                "click",
+
+                () => showImage(
+
+                    image.src
+
+                )
+
+            );
+
+        });
+
+        Modal.open(
+
             "evidence-modal"
 
-        ).style.display = "none";
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        document.getElementById(
+
+            "evidence-content"
+
+        ).innerHTML =
+
+            "<h3>Unable to load evidence.</h3>";
+
+        Modal.open(
+
+            "evidence-modal"
+
+        );
+
+    }
+
+}
+
+/* ==========================================
+Image Viewer
+========================================== */
+
+function showImage(src) {
+
+    let viewer = document.getElementById(
+
+        "image-viewer"
+
+    );
+
+    if (!viewer) {
+
+        viewer = document.createElement(
+
+            "div"
+
+        );
+
+        viewer.id = "image-viewer";
+
+        viewer.className = "image-viewer";
+
+        viewer.innerHTML =
+
+            `<img src="">`;
+
+        document.body.appendChild(
+
+            viewer
+
+        );
+
+        viewer.addEventListener(
+
+            "click",
+
+            () => {
+
+                viewer.classList.remove(
+
+                    "show"
+
+                );
+
+            }
+
+        );
+
+    }
+
+    viewer.querySelector(
+
+        "img"
+
+    ).src = src;
+
+    viewer.classList.add(
+
+        "show"
+
+    );
+
+}
+
+/* ==========================================
+Initialize
+========================================== */
+
+export function initializeEvidence() {
+
+    document.querySelectorAll(
+
+        ".logs-btn"
+
+    ).forEach(button => {
+
+        button.addEventListener(
+
+            "click",
+
+            () =>
+
+                openLogs(
+
+                    button.dataset.module
+
+                )
+
+        );
+
+    });
+
+    document.querySelectorAll(
+
+        ".evidence-btn"
+
+    ).forEach(button => {
+
+        button.addEventListener(
+
+            "click",
+
+            () =>
+
+                openEvidence(
+
+                    button.dataset.module
+
+                )
+
+        );
+
+    });
 
 }

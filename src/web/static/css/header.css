@@ -1,0 +1,261 @@
+/*
+=========================================================
+HEADER
+=========================================================
+*/
+
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#ffffff;
+
+    border-radius:14px;
+
+    padding:20px 28px;
+
+    border:1px solid #E5E7EB;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+
+    margin-bottom:24px;
+
+}
+
+/* ==========================================
+Left
+========================================== */
+
+.header-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+}
+
+.logo{
+
+    width:54px;
+
+    height:54px;
+
+    border-radius:12px;
+
+    background:#2563EB;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#fff;
+
+    font-size:28px;
+
+}
+
+.title h1{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:#111827;
+
+    letter-spacing:.4px;
+
+    margin:0;
+
+}
+
+/* ==========================================
+Right
+========================================== */
+
+.header-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+}
+
+/* ==========================================
+Mode
+========================================== */
+
+.mode-dropdown{
+
+    position:relative;
+
+}
+
+.mode-button{
+
+    height:44px;
+
+    padding:0 18px;
+
+    border:1px solid #DCFCE7;
+
+    background:#F0FDF4;
+
+    color:#15803D;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+.mode-dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:#16A34A;
+
+}
+
+.arrow{
+
+    font-size:12px;
+
+    color:#6B7280;
+
+}
+
+.mode-button:hover{
+
+    background:#DCFCE7;
+
+}
+
+.mode-menu{
+
+    position:absolute;
+
+    top:52px;
+
+    right:0;
+
+    width:180px;
+
+    background:#fff;
+
+    border-radius:10px;
+
+    border:1px solid #E5E7EB;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    display:none;
+
+    overflow:hidden;
+
+    z-index:100;
+
+}
+
+.mode-menu.show{
+
+    display:block;
+
+}
+
+.mode-item{
+
+    padding:12px 16px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.mode-item:hover{
+
+    background:#F8FAFC;
+
+}
+
+/* ==========================================
+Settings
+========================================== */
+
+.settings-button{
+
+    height:44px;
+
+    padding:0 18px;
+
+    border-radius:10px;
+
+    border:1px solid #E5E7EB;
+
+    background:#fff;
+
+    color:#374151;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+.settings-button:hover{
+
+    background:#F9FAFB;
+
+}
+
+/* ==========================================
+Responsive
+========================================== */
+
+@media(max-width:900px){
+
+    .header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:18px;
+
+    }
+
+    .header-right{
+
+        width:100%;
+
+        justify-content:space-between;
+
+    }
+
+}

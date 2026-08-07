@@ -2,24 +2,31 @@
 
 {% block title %}
 
-OJA Regression Framework
+OJA Automation Framework
 
 {% endblock %}
 
-
 {% block content %}
 
-{% include "components/header.html" %}
+<div class="dashboard">
 
-{% include "components/application.html" %}
+    {% include "components/header.html" %}
 
-{% include "components/mode.html" %}
+    {% include "components/toolbar.html" %}
 
-{% include "components/modules.html" %}
+    {% include "components/modules.html" %}
 
-{% include "components/footer.html" %}
+    {% include "components/progress.html" %}
 
-{% include "components/summary.html" %}
+    {% include "components/summary.html" %}
+
+</div>
+
+{% include "components/modals/logs.html" %}
+
+{% include "components/modals/evidence.html" %}
+
+{% include "components/modals/settings.html" %}
 
 <script>
 

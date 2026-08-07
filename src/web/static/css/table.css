@@ -1,0 +1,313 @@
+/*
+=========================================================
+MODULES
+=========================================================
+*/
+
+.modules-panel{
+
+    background:#ffffff;
+
+    border:1px solid #E5E7EB;
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+
+}
+
+/* ==========================================
+Table
+========================================== */
+
+.modules-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.modules-table thead{
+
+    background:#F8FAFC;
+
+}
+
+.modules-table th{
+
+    padding:18px 20px;
+
+    text-align:left;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:#6B7280;
+
+    border-bottom:1px solid #E5E7EB;
+
+}
+
+.modules-table td{
+
+    padding:18px 20px;
+
+    border-bottom:1px solid #F1F5F9;
+
+    vertical-align:middle;
+
+}
+
+.modules-table tbody tr{
+
+    transition:.25s;
+
+}
+
+.modules-table tbody tr:hover{
+
+    background:#F9FBFF;
+
+}
+
+/* ==========================================
+Module
+========================================== */
+
+.module-name{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+.module-icon{
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:10px;
+
+    background:#EFF6FF;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:18px;
+
+    flex-shrink:0;
+
+}
+
+.module-title{
+
+    color:#111827;
+
+}
+
+/* ==========================================
+Status
+========================================== */
+
+.status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:110px;
+
+    padding:8px 16px;
+
+    border-radius:50px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+.waiting{
+
+    background:#FEF3C7;
+
+    color:#92400E;
+
+}
+
+.running{
+
+    background:#DBEAFE;
+
+    color:#1D4ED8;
+
+}
+
+.pass{
+
+    background:#DCFCE7;
+
+    color:#15803D;
+
+}
+
+.fail{
+
+    background:#FEE2E2;
+
+    color:#B91C1C;
+
+}
+
+/* ==========================================
+Duration
+========================================== */
+
+.duration{
+
+    font-weight:600;
+
+    color:#374151;
+
+}
+
+/* ==========================================
+Buttons
+========================================== */
+
+.logs-btn,
+
+.evidence-btn,
+
+.run-btn{
+
+    border:none;
+
+    border-radius:8px;
+
+    height:38px;
+
+    padding:0 16px;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+/* Logs */
+
+.logs-btn{
+
+    background:#EFF6FF;
+
+    color:#2563EB;
+
+}
+
+.logs-btn:hover{
+
+    background:#DBEAFE;
+
+}
+
+/* Evidence */
+
+.evidence-btn{
+
+    background:#F3F4F6;
+
+    color:#374151;
+
+}
+
+.evidence-btn:hover{
+
+    background:#E5E7EB;
+
+}
+
+/* Execute */
+
+.run-btn{
+
+    background:#2563EB;
+
+    color:#ffffff;
+
+}
+
+.run-btn:hover{
+
+    background:#1D4ED8;
+
+}
+
+/* ==========================================
+Run All
+========================================== */
+
+.run-all-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin:28px 0;
+
+}
+
+.run-all-btn{
+
+    min-width:240px;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#2563EB;
+
+    color:#ffffff;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.run-all-btn:hover{
+
+    background:#1D4ED8;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 12px 24px rgba(37,99,235,.25);
+
+}
